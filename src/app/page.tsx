@@ -21,62 +21,50 @@ export default async function Home() {
     options
   );
   const data = await res.json();
-  // console.log(data.results[0]);
-  const movieName: string = data.results[0].title;
-  const movieRating: number = data.results[0].vote_average;
-  const movieOverview: string = data.results[0].overview;
-  const moviePoster = data.results[0].poster_path;
-  console.log(moviePoster);
+  const movies = data.results?.slice(1, 13);
+
   return (
     <div>
-      <div>
-        <div className="h-[30%] w-[90%] mx-auto mt-4">
-          <img
-            src={`https://image.tmdb.org/t/p/w185/${moviePoster}`}
-            alt="Movie Poster"
-            className="bg-center rounded-lg shadow-lg hover:shadow-2xl transition-shadow"
-          />
+      <div className="relative w-[90%] h-[300px] sm:h-[350px] md:h-[500px] overflow-hidden mx-auto mt-4">
+        <img
+          src={`https://image.tmdb.org/t/p/w185/${data.results[0].poster_path}`}
+          alt="Movie Poster"
+          className="rounded-lg shadow-lg absolute top-0 left-0 w-full h-full object-cover"
+        />
+      </div>
+      <div className="flex justify-between w-[90%] mx-auto mt-6">
+        <div>
+          <p className="text-[13px]">Now Playing:</p>
+          <b>{data.results[0].title}</b>
         </div>
-        <div className="flex justify-between w-[90%] mx-auto mt-6">
-          <div>
-            <p className="text-[13px]">Now Playing:</p>
-            <b>{movieName}</b>
-          </div>
-          <div>⭐️{movieRating}/10 </div>
-        </div>
-        <div className="text-[14px] w-[90%] mx-auto mt-6">
-          <p>{movieOverview}</p>
-        </div>
-        <div className="bg-[#18181B] flex text-sm text-white rounded-md box-border p-2 w-[140px] m-4 ">
+        <div>⭐️{data.results[0].vote_average}/10 </div>
+      </div>
+      <div className="text-[14px] w-[90%] mx-auto mt-6">
+        <p>{data.results[0].overview}</p>
+      </div>
+      <div className="flex justify-start max-w-[70%]">
+        <div className="bg-[#18181B] text-sm text-white rounded-md flex gap-1 box-border p-2 w-[140px] m-6">
           <Play />
           <p>Watch Trailer</p>
         </div>
       </div>
-      <div className="flex justify-between w-[90%] mx-auto">
+
+      <div className="flex justify-between w-[90%] mx-auto mt-12">
         <b className="text-lg">Upcoming</b>
         <button className="flex">
           See more <ArrowRight />
         </button>
       </div>
-      <div className="flex justify-between w-[90%] mx-auto">
-        <Card />
-        <Card />
-      </div>
-      <div className="flex justify-between w-[90%] mx-auto">
-        <Card />
-        <Card />
-      </div>
-      <div className="flex justify-between w-[90%] mx-auto">
-        <Card />
-        <Card />
-      </div>
-      <div className="flex justify-between w-[90%] mx-auto">
-        <Card />
-        <Card />
-      </div>
-      <div className="flex justify-between w-[90%] mx-auto">
-        <Card />
-        <Card />
+
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
+        {movies.map((movie) => (
+          <Card
+            key={movie.id}
+            title={movie.title}
+            poster={movie.poster_path}
+            vote={movie.vote_average}
+          />
+        ))}
       </div>
     </div>
   );
