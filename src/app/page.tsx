@@ -56,7 +56,7 @@ export default async function Home() {
         </button>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
         {movies.map((movie) => (
           <Card
             key={movie.id}

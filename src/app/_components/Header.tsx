@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Theme } from "./Theme";
-import { SearchItem } from "./Search";
+import { SearchButtonOrInput } from "./Search";
 
 export const Header = () => {
   return (
@@ -10,11 +10,11 @@ export const Header = () => {
         <div className="items-center ">
           <img src="/assets/Logo.svg" alt="logo" />
         </div>
-        <div className="flex space-x-4 flex-end">
+        <div className="flex gap-5">
           <div>
-            <SearchItem />
+            <SearchButtonOrInput />
           </div>
-          <div className="flex space-x-4 flex-end">
+          <div className="">
             <Theme />
           </div>
         </div>
