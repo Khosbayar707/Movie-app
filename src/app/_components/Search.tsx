@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 import { useMediaQuery } from "react-responsive";
 
 export const SearchButtonOrInput = () => {
@@ -12,7 +11,7 @@ export const SearchButtonOrInput = () => {
 
   if (isLargeScreen) {
     return (
-      <div className="">
+      <div>
         <Input
           type="text"
           value={searchValue}
@@ -28,4 +27,3 @@ export const SearchButtonOrInput = () => {
     </Button>
   );
 };
-

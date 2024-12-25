@@ -3,6 +3,9 @@ import { Card } from "./_components/Card";
 import { Trailer } from "./_components/Trailer";
 import { Play } from "lucide-react";
 import { ArrowRight } from "lucide-react";
+import { Movie } from "./[category]/page";
+import { Section } from "./_components/Section";
+// import { Section } from "./_components/Section";
 
 export const API_KEY = "f39690f9830ce804b7894ac1def4f7e9";
 
@@ -17,17 +20,17 @@ const options = {
 
 export default async function Home() {
   const res = await fetch(
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
     options
   );
   const data = await res.json();
-  const movies = data.results?.slice(1, 13);
+  const upcomingMovies = data.results?.slice(1, 13);
 
   return (
     <div>
       <div className="relative w-[90%] h-[300px] sm:h-[350px] md:h-[500px] overflow-hidden mx-auto mt-4">
         <img
-          src={`https://image.tmdb.org/t/p/w185/${data.results[0].poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500/${data.results[0].poster_path}`}
           alt="Movie Poster"
           className="rounded-lg shadow-lg absolute top-0 left-0 w-full h-full object-cover"
         />
@@ -48,24 +51,9 @@ export default async function Home() {
           <p>Watch Trailer</p>
         </div>
       </div>
-
-      <div className="flex justify-between w-[90%] mx-auto mt-12">
-        <b className="text-lg">Upcoming</b>
-        <button className="flex">
-          See more <ArrowRight />
-        </button>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
-        {movies.map((movie) => (
-          <Card
-            key={movie.id}
-            title={movie.title}
-            poster={movie.poster_path}
-            vote={movie.vote_average}
-          />
-        ))}
-      </div>
+      <Section title="Upcoming" endpoint="upcoming" />
+      <Section title="Top Rated" endpoint="top_rated" />
+      <Section title="Popular" endpoint="popular" />
     </div>
   );
 }

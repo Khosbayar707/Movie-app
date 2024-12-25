@@ -4,7 +4,7 @@ import { Phone } from "lucide-react";
 export function Footer() {
   return (
     <footer>
-      <div className="w-full h-[280px] bg-indigo-700 box-border p-6 text-white text-[14px]">
+      <div className="w-full h-[280px] bg-indigo-700 box-border pt-4 text-white text-[14px]">
         <div className="w-[70%] mb-2 mx-auto">
           <img src="/assets/Logo (1).svg" alt="logo" className="m-4" />
           <p>© 2024 Movie Z. All Rights Reserved.</p>
