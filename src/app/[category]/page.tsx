@@ -1,7 +1,7 @@
 import { Card } from "../_components/Card";
 import { ArrowRight } from "lucide-react";
 
-const options = {
+export const options = {
   method: "GET",
   headers: {
     accept: "application/json",

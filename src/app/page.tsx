@@ -24,8 +24,7 @@ export default async function Home() {
     options
   );
   const data = await res.json();
-  const upcomingMovies = data.results?.slice(1, 13);
-
+  // console.log(data);
   return (
     <div>
       <div className="relative w-[90%] h-[300px] sm:h-[350px] md:h-[500px] overflow-hidden mx-auto mt-4">
