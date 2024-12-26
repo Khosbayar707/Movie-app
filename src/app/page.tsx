@@ -5,7 +5,6 @@ import { Play } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { Movie } from "./[category]/page";
 import { Section } from "./_components/Section";
-// import { Section } from "./_components/Section";
 
 export const API_KEY = "f39690f9830ce804b7894ac1def4f7e9";
 
@@ -20,11 +19,10 @@ const options = {
 
 export default async function Home() {
   const res = await fetch(
-    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
     options
   );
   const data = await res.json();
-  // console.log(data);
   return (
     <div>
       <div className="relative w-[90%] h-[300px] sm:h-[350px] md:h-[500px] overflow-hidden mx-auto mt-4">
@@ -39,7 +37,7 @@ export default async function Home() {
           <p className="text-[13px]">Now Playing:</p>
           <b>{data.results[0].title}</b>
         </div>
-        <div>⭐️{data.results[0].vote_average}/10 </div>
+        <div>⭐️{data.results[0].vote_average.toFixed(1)}/10 </div>
       </div>
       <div className="text-[14px] w-[90%] mx-auto mt-6">
         <p>{data.results[0].overview}</p>
