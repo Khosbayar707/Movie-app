@@ -44,55 +44,64 @@ export default async function Page({ params }) {
     );
   };
 
-  return (
-    <div className="mx-auto mt-6">
-      <div>
-        <div className="text-[24px]">
-          <b>{movie.title}</b>
-        </div>
-        <div>
-          <h1>{movie.release_date}</h1>
-        </div>
-        <div>
-          <h1>{movie.runtime} Минут</h1>
-        </div>
-        <div>
-          <h1>⭐️{movie.vote_average.toFixed(1)}/10</h1>
-          <h1>{movie.vote_count}</h1>
-        </div>
-      </div>
+  const hours = Math.floor(movie.runtime / 60);
+  const minutes = movie.runtime % 60;
 
-      <div className="relative w-full h-[300px] sm:h-[350px] md:h-[500px] overflow-hidden mx-auto mt-4">
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
-          alt="Movie Poster"
-          className="shadow-lg absolute top-0 left-0 w-full h-full object-cover"
-        />
-      </div>
-      <div className="relative w-[30%] h-[148px] sm:h-[200px] md:h-[250px] overflow-hidden mx-start mt-4">
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          alt="Movie Poster"
-          className="rounded-lg shadow-lg absolute top-0 left-0 w-full h-full object-cover"
-        />
-      </div>
-      <div>
-        <h1>Genres: {names}</h1>
-      </div>
-      <div>
-        <h1>{movie.overview}</h1>
-      </div>
-      <div className="flex">
-        <h1>Director:</h1>
-        <h1>{director?.name}</h1>
-      </div>
-      <div className="flex">
-        <h1>Writers:</h1>
-        <Cast cast={writers} />
-      </div>
-      <div className="flex">
-        <h1>Stars:</h1>
-        <Cast cast={cast} />
+  return (
+    <div className="">
+      <div className="mx-auto mt-6">
+        <div>
+          <div className="text-[24px]">
+            <b>{movie.title}</b>
+          </div>
+          <div className="flex  justify-around w-[90%]">
+            <div className="flex justify-around w-[20%]">
+              <div>
+                <h1>{movie.release_date}</h1>
+              </div>
+              <div>
+                <h1>{`${hours}h ${minutes}`} </h1>
+              </div>
+            </div>
+            <div>
+              <h1>⭐️{movie.vote_average.toFixed(1)}/10</h1>
+              <h1>{movie.vote_count} votes</h1>
+            </div>
+          </div>
+        </div>
+        <div className="container mx-auto grid grid-cols-1  md:grid-cols-2 gap-8">
+          <div className="relative w-full h-[350px] overflow-hidden mx-auto mt-4">
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+              alt="Movie Poster"
+              className="shadow-lg absolute top-0 left-0 w-full h-full object-cover"
+            />
+          </div>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt="Movie Poster"
+            className="mt-4 w-[auto] h-[350px]"
+          />
+        </div>
+
+        <div>
+          <h1>Genres: {names}</h1>
+        </div>
+        <div>
+          <h1>{movie.overview}</h1>
+        </div>
+        <div className="flex">
+          <h1>Director:</h1>
+          <h1>{director?.name}</h1>
+        </div>
+        <div className="flex">
+          <h1>Writers:</h1>
+          <Cast cast={writers} />
+        </div>
+        <div className="flex">
+          <h1>Stars:</h1>
+          <Cast cast={cast} />
+        </div>
       </div>
     </div>
   );
