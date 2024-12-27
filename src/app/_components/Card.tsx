@@ -5,9 +5,9 @@ type Props = {
   prop: Movie;
 };
 export function Card(props: Props) {
-  // console.log("mopvie", props.prop);
+  // console.log("movie", props.prop);
   return (
-    <Link href={`movie/${props.prop?.id}`}>
+    <Link href={`/movie/${props.prop?.id}`}>
       <div className="mx-2 my-2 rounded-lg shadow-lg bg-white">
         <div>
           <img

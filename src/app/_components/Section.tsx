@@ -22,7 +22,7 @@ export async function Section({ title, endpoint }) {
     <div>
       <div className="flex justify-between w-[90%] mx-auto mt-12">
         <b className="text-lg">{title}</b>
-        <a href={`/${endpoint}`}>
+        <a href={`/${endpoint}?language=en-US&page=1`}>
           <button className="flex">
             See more <ArrowRight />
           </button>

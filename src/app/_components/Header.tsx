@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import { Theme } from "./Theme";
 import { SearchButtonOrInput } from "./Search";

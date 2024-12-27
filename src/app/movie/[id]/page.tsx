@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/app/_components/Card";
+import Link from "next/link";
 
 export const API_KEY = "f39690f9830ce804b7894ac1def4f7e9";
 const options = {
@@ -35,6 +37,20 @@ export default async function Page({ params }) {
 
   const director = crew.find((cr) => cr.job === "Director");
   const writers = crew.filter((wr) => wr.department === "Writing");
+
+  const resSimilar = await fetch(
+    `https://api.themoviedb.org/3/movie/${params.id}/recommendations`,
+    options
+  );
+  const dataSimilar = await resSimilar.json();
+  const movieSimilar = dataSimilar.results;
+
+  // const FirstTwoMovies = movieSimilar
+  //   .map((movie) => {
+  //     return <div>{movie.title}</div>;
+  //   })
+  //   .slice(0, 2);
+  // console.log("title----- ", FirstTwoMovies);
 
   const Cast = ({ cast }) => {
     return (
@@ -140,9 +156,17 @@ export default async function Page({ params }) {
         </div>
         <div className="flex justify-between w-[90%] mx-auto mt-12">
           <b className="text-lg">More like this</b>
-          <button className="flex">
-            See more <ArrowRight />
-          </button>
+          <Link href={`${params.id}/recommendations`}>
+            <button className="flex">
+              See more <ArrowRight />
+            </button>
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
+          {movieSimilar &&
+            movieSimilar.slice(0, 8).map((movie) => {
+              return <Card prop={movie} />;
+            })}
         </div>
       </div>
     </div>

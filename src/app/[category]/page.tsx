@@ -1,5 +1,10 @@
+"use client";
+
 import { Card } from "../_components/Card";
 import { ArrowRight } from "lucide-react";
+import { useParams, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
+import { Pagination } from "../_components/Pagination";
 
 export const options = {
   method: "GET",
@@ -32,20 +37,31 @@ type Params = {
   category: string;
 };
 
-export default async function Page(props: Props) {
+export default function Page() {
   //   console.log("param----", props);
+  const params = useParams();
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page");
 
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${props?.params?.category}?language=en-US&page=1`,
-    options
-  );
-  const data = await res.json();
-  const movies = data?.results?.slice(1, 30);
+  const [movies, setMovies] = useState<Movie[]>();
+
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/${params?.category}?language=en-US&page=${page}`,
+        options
+      );
+      const data = await response.json();
+      setMovies(data.results?.slice(0, 12));
+    };
+    fetchMovies();
+  }, [page, params.category]);
+  console.log(movies);
   return (
     <div>
       <div className="flex justify-between w-[90%] mx-auto mt-12">
         <b className="text-lg">
-          {props?.params?.category.toUpperCase().replaceAll("_", " ")}
+          {params.category.toUpperCase().replaceAll("_", " ")}
         </b>
         <button className="flex">
           See more <ArrowRight />
@@ -56,6 +72,7 @@ export default async function Page(props: Props) {
           <Card key={index} prop={movie} />
         ))}
       </div>
+      <Pagination />
     </div>
   );
 }
