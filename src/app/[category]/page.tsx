@@ -72,7 +72,7 @@ export default function Page() {
           <Card key={index} prop={movie} />
         ))}
       </div>
-      <Pagination />
+      <Pagination currentPage={1} totalPages={5} />
     </div>
   );
 }
