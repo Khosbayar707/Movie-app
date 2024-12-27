@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export const API_KEY = "f39690f9830ce804b7894ac1def4f7e9";
 const options = {
@@ -18,7 +20,7 @@ export default async function Page({ params }) {
   const data = await res.json();
   const movie = data;
   const genres = data?.genres;
-  console.log("seeking genres ---------", genres);
+  // console.log("seeking genres ---------", genres);
 
   const names = genres.map((genre) => genre.name);
 
@@ -44,32 +46,33 @@ export default async function Page({ params }) {
     );
   };
 
-  const hours = Math.floor(movie.runtime / 60);
-  const minutes = movie.runtime % 60;
+  const Time = () => {
+    const hours = Math.floor(movie.runtime / 60);
+    const minutes = movie.runtime % 60;
+    return <h1>{`${hours}h ${minutes}`} </h1>;
+  };
 
   return (
     <div className="">
       <div className="mx-auto mt-6">
         <div>
-          <div className="text-[24px]">
+          <div className="text-[24px] mx-auto w-[90%]">
             <b>{movie.title}</b>
           </div>
-          <div className="flex  justify-around w-[90%]">
-            <div className="flex justify-around w-[20%]">
+          <div className="mx-auto w-[90%]">
+            <div className="flex justify-between">
               <div>
                 <h1>{movie.release_date}</h1>
+                <Time />
               </div>
               <div>
-                <h1>{`${hours}h ${minutes}`} </h1>
+                <h1>⭐️{movie.vote_average.toFixed(1)}/10</h1>
+                <h1>{movie.vote_count} votes</h1>
               </div>
-            </div>
-            <div>
-              <h1>⭐️{movie.vote_average.toFixed(1)}/10</h1>
-              <h1>{movie.vote_count} votes</h1>
             </div>
           </div>
         </div>
-        <div className="container mx-auto grid grid-cols-1  md:grid-cols-2 gap-8">
+        <div className="container mx-auto flex flex-wrap">
           <div className="relative w-full h-[350px] overflow-hidden mx-auto mt-4">
             <img
               src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
@@ -77,30 +80,69 @@ export default async function Page({ params }) {
               className="shadow-lg absolute top-0 left-0 w-full h-full object-cover"
             />
           </div>
-          <img
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt="Movie Poster"
-            className="mt-4 w-[auto] h-[350px]"
-          />
+          <div className="flex items-start gap-4 mx-auto w-[90%]">
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt="Movie Poster"
+              className="mt-4 w-[auto] h-[350px]"
+            />
+            <div>
+              <div className="font-bold p-4">
+                <h1>
+                  Genres:
+                  <Badge
+                    style={{
+                      border: "1px solid white",
+                      backgroundColor: "black",
+                      color: "white",
+                      marginLeft: 10,
+                    }}
+                  >
+                    {names[0]}
+                  </Badge>
+                  <Badge
+                    style={{
+                      border: "1px solid white",
+                      backgroundColor: "black",
+                      color: "white",
+                      marginLeft: 10,
+                    }}
+                  >
+                    {names[1]}
+                  </Badge>
+                  <Badge
+                    style={{
+                      border: "1px solid white",
+                      backgroundColor: "black",
+                      color: "white",
+                      marginLeft: 10,
+                    }}
+                  >
+                    {names[2]}
+                  </Badge>
+                </h1>
+              </div>
+              <div className="text-justify">{movie.overview}</div>
+            </div>
+          </div>
         </div>
-
-        <div>
-          <h1>Genres: {names}</h1>
-        </div>
-        <div>
-          <h1>{movie.overview}</h1>
-        </div>
-        <div className="flex">
-          <h1>Director:</h1>
+        <div className="w-[90%] mx-auto flex justify-between border-b border-gray-700 pb-2 my-4">
+          <b>Director:</b>
           <h1>{director?.name}</h1>
         </div>
-        <div className="flex">
-          <h1>Writers:</h1>
+        <div className="w-[90%] mx-auto flex justify-between border-b border-gray-700 pb-2 mb-4">
+          <b>Writers:</b>
           <Cast cast={writers} />
         </div>
-        <div className="flex">
-          <h1>Stars:</h1>
+        <div className="w-[90%] mx-auto flex justify-between border-b border-gray-700 pb-2 mb-4">
+          <b>Stars:</b>
           <Cast cast={cast} />
+        </div>
+        <div className="flex justify-between w-[90%] mx-auto mt-12">
+          <b className="text-lg">More like this</b>
+          <button className="flex">
+            See more <ArrowRight />
+          </button>
         </div>
       </div>
     </div>
