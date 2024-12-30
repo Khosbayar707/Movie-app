@@ -14,28 +14,15 @@ export const Pagination = ({
   const router = useRouter();
 
   const onChangePage = (newPage: number) => {
-    if (newPage < 1 || newPage > totalPages) return; // Prevent invalid page navigation
+    if (newPage < 1 || newPage > totalPages) return;
     const newSearchParams = new URLSearchParams(searchParams.toString());
     newSearchParams.set("page", newPage.toString());
     const newURL = pathName + "?" + newSearchParams.toString();
     router.push(newURL);
-    console.log(newURL); // Keep your logging intact
   };
 
   return (
     <div className="flex justify-center gap-4 w-[90%] my-4">
-      {/* Previous Button */}
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => onChangePage(currentPage - 1)}
-        disabled={currentPage <= 1}
-        aria-label="Previous page"
-      >
-        <ChevronLeft />
-      </Button>
-
-      {/* Page Buttons */}
       {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
         <Button
           key={page}
@@ -46,17 +33,6 @@ export const Pagination = ({
           {page}
         </Button>
       ))}
-
-      {/* Next Button */}
-      <Button
-        variant="outline"
-        size="icon"
-        onClick={() => onChangePage(currentPage + 1)}
-        disabled={currentPage >= totalPages}
-        aria-label="Next page"
-      >
-        <ChevronRight />
-      </Button>
     </div>
   );
 };

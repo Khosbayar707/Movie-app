@@ -18,13 +18,13 @@ export const SearchButtonOrInput = () => {
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Search..."
-          autoFocus={showInput} // Focus input when it appears
-          className="pr-10 w-full" // Add padding for the button
+          autoFocus={showInput}
+          className="pr-10 w-full"
         />
         {!isLargeScreen && (
           <div
-            onClick={() => setShowInput(false)} // Optionally hide input
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2" // Position the button inside the input
+            onClick={() => setShowInput(false)}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2"
           >
             ✖
           </div>

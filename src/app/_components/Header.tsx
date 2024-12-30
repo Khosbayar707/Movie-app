@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Theme } from "./Theme";
 import { SearchButtonOrInput } from "./Search";
+import { Genre } from "./FilterGenre";
+import { SearchResult } from "./SearchResult";
 
 export const Header = () => {
   return (
@@ -13,7 +15,11 @@ export const Header = () => {
         </a>
         <div className="flex gap-5">
           <div>
+            <Genre />
+          </div>
+          <div>
             <SearchButtonOrInput />
+            <SearchResult />
           </div>
           <div className="">
             <Theme />
