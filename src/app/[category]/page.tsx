@@ -44,6 +44,10 @@ export default function Page() {
   const page = searchParams.get("page");
 
   const [movies, setMovies] = useState<Movie[]>();
+  const [pageInfo, setPageInfo] = useState<PageInfo>({
+    totalPages: 0,
+    currentPages: 0,
+  });
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -53,6 +57,7 @@ export default function Page() {
       );
       const data = await response.json();
       setMovies(data.results?.slice(0, 12));
+      setPageInfo({ currentPage: Number(page), totalPages: data.total_pages });
     };
     fetchMovies();
   }, [page, params.category]);
@@ -72,7 +77,7 @@ export default function Page() {
           <Card key={index} prop={movie} />
         ))}
       </div>
-      <Pagination currentPage={1} totalPages={5} />
+      <Pagination pageInfo={pageInfo} />
     </div>
   );
 }
