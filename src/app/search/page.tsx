@@ -2,8 +2,9 @@
 
 import { useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { options } from "../[category]/page";
 import { Card } from "../_components/Card";
+import { Movie } from "../types";
+import { options } from "../api";
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -23,12 +24,11 @@ export default function Page() {
     fetchMovies();
   }, [genre]);
 
-  console.log(movies);
+  // console.log(movies);
   //   const titles = movies?.map(title)=>(movies.title)
 
   return (
-    <div className="flex justify-between w-[90%] mx-auto mt-12">
-      <b className="flex">Result for {genre}</b>
+    <div className="flex justify-between w-[90%] mx-auto">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mx-auto my-6">
         {movies?.map((movie: Movie, index: number) => (
           <Card key={index} prop={movie} />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Movie } from "../page";
+import { Movie } from "../types";
 
 type Props = {
   prop: Movie;

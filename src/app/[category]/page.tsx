@@ -5,36 +5,19 @@ import { ArrowRight } from "lucide-react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Pagination } from "../_components/Pagination";
+import { Movie } from "../types";
+import { options } from "../api";
 
-export const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzk2OTBmOTgzMGNlODA0Yjc4OTRhYzFkZWY0ZjdlOSIsIm5iZiI6MTczNDk0OTM3MS43NDIsInN1YiI6IjY3NjkzOWZiYzdmMTcyMDVkMTBiMGIxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2r2TerxSJdZGmGVSLVDkk6nHT0NPqY4rOcxHtMNt0aE",
-  },
-};
-export type Movie = {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-};
 type Props = {
   params: Params;
 };
 type Params = {
   category: string;
+};
+
+export type PageInfo = {
+  totalPages: number;
+  currentPages: number;
 };
 
 export default function Page() {
@@ -57,16 +40,16 @@ export default function Page() {
       );
       const data = await response.json();
       setMovies(data.results?.slice(0, 12));
-      setPageInfo({ currentPage: Number(page), totalPages: data.total_pages });
+      setPageInfo({ currentPages: Number(page), totalPages: data.total_pages });
     };
     fetchMovies();
   }, [page, params.category]);
-  console.log(movies);
+  // console.log(movies);
   return (
     <div>
       <div className="flex justify-between w-[90%] mx-auto mt-12">
         <b className="text-lg">
-          {params.category.toUpperCase().replaceAll("_", " ")}
+          {String(params.category).toUpperCase().replaceAll("_", " ")}
         </b>
         <button className="flex">
           See more <ArrowRight />

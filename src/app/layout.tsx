@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Footer } from "./_components/Footer.tsx";
-import { Header } from "./_components/Header.tsx";
 
 import { Montserrat } from "next/font/google";
+import { Header } from "./_components/Header";
+import { Footer } from "./_components/Footer";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const geistSans = Geist({

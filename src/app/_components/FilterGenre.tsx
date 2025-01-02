@@ -1,6 +1,5 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { options } from "../[category]/page";
 import Link from "next/link";
 
 import {
@@ -11,9 +10,15 @@ import {
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { options } from "../api";
+
+type Genre = {
+  id: number;
+  name: string;
+};
 
 export const Genre = () => {
-  const [genres, setGenres] = useState();
+  const [genres, setGenres] = useState<Genre[]>();
   useEffect(() => {
     const fetchGenres = async () => {
       const response = await fetch(
@@ -24,11 +29,13 @@ export const Genre = () => {
       setGenres(data.genres);
     };
     fetchGenres();
-  }, [genres]);
+  }, []);
 
-  const onClickGenre = (genreId: number) => {
-    `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=en-US&page=1`;
-  };
+  // console.log("here------", genres);
+
+  // const onClickGenre = (genreId: number) => {
+  //   `https://api.themoviedb.org/3/discover/movie?with_genres=${genreId}&language=en-US&page=1`;
+  // };
 
   return (
     <div>

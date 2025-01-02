@@ -1,22 +1,20 @@
 "use client";
 import { ArrowRight } from "lucide-react";
-import { Movie } from "@/app/[category]/page";
 import { Card } from "@/app/_components/Card";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzk2OTBmOTgzMGNlODA0Yjc4OTRhYzFkZWY0ZjdlOSIsIm5iZiI6MTczNDk0OTM3MS43NDIsInN1YiI6IjY3NjkzOWZiYzdmMTcyMDVkMTBiMGIxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2r2TerxSJdZGmGVSLVDkk6nHT0NPqY4rOcxHtMNt0aE",
-  },
-};
+import { options } from "@/app/api";
+import { Movie } from "@/app/types";
+// import { Pagination } from "@/app/_components/Pagination";
+// import { PageInfo } from "@/app/[category]/page";
 
 export default function Recommend() {
   const pathname = usePathname();
-  const [movies, setMovies] = useState();
+  const [movies, setMovies] = useState<Movie[]>();
+  // const [pageInfo, setPageInfo] = useState<PageInfo>({
+  //   totalPages: 0,
+  //   currentPages: 0,
+  // });
 
   useEffect(() => {
     const fetchData = async () => {

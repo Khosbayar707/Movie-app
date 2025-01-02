@@ -20,7 +20,7 @@ export async function Section({ title, endpoint }) {
   const movies = data.results?.slice(1, 13);
   return (
     <div>
-      <div className="flex justify-between w-[90%] mx-auto mt-12">
+      <div className="flex justify-between w-[90%] mx-auto">
         <b className="text-lg">{title}</b>
         <a href={`/${endpoint}?language=en-US&page=1`}>
           <button className="flex">
