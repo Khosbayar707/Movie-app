@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useMediaQuery } from "react-responsive";
-import { Suggestion } from "./SearchResult";
+import { Suggestion } from "./Suggestion";
 
 export const SearchButtonOrInput = () => {
   const isLargeScreen = useMediaQuery({ minWidth: 550 });

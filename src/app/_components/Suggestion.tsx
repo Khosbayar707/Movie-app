@@ -23,7 +23,7 @@ export function Suggestion({ searchValue }) {
 
   return (
     <div className="mx-auto absolute z-10">
-      <div className="border-2 border-gray-#E4E4E7 rounded-lg overflow-hidden min-w-[50%]">
+      <div className="border-2 border-gray-#E4E4E7 rounded-lg overflow-hidden min-w-[80%]">
         {movies?.map((movie: Movie, index: number) => (
           <ResultCard key={index} prop={movie} />
         ))}

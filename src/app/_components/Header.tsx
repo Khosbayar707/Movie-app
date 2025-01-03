@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Theme } from "./Theme";
 import { SearchButtonOrInput } from "./SearchInput";
 import { Genre } from "./FilterGenre";
-import { Suggestion } from "./SearchResult";
+import { Suggestion } from "./Suggestion";
 
 export const Header = () => {
   return (
@@ -13,7 +13,7 @@ export const Header = () => {
             <img src="/assets/Logo.svg" alt="logo" />
           </div>
         </a>
-        <div className="flex gap-5">
+        <div className="flex gap-2">
           <div>
             <Genre />
           </div>
