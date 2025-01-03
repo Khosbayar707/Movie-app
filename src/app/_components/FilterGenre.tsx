@@ -46,7 +46,7 @@ export const Genre = () => {
         </PopoverTrigger>
         <PopoverContent className="rounded-xl">
           {genres?.map((genre) => (
-            <Link href={`/search?with_genres=${genre.id}`}>
+            <Link href={`/discover?with_genres=${genre.id}`}>
               <Badge className="rounded-2xl m-1" key={`genre-${genre.id}`}>
                 {genre?.name} <ChevronRight />
               </Badge>

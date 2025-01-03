@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { Theme } from "./Theme";
-import { SearchButtonOrInput } from "./Search";
+import { SearchButtonOrInput } from "./SearchInput";
 import { Genre } from "./FilterGenre";
-import { SearchResult } from "./SearchResult";
+import { Suggestion } from "./SearchResult";
 
 export const Header = () => {
   return (
@@ -19,7 +19,6 @@ export const Header = () => {
           </div>
           <div>
             <SearchButtonOrInput />
-            <SearchResult />
           </div>
           <div className="">
             <Theme />
