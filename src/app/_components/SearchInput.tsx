@@ -21,7 +21,7 @@ export const SearchButtonOrInput = () => {
           onChange={(e) => setSearchValue(e.target.value)}
           placeholder="Search..."
           autoFocus={showInput}
-          className="pr-10 w-full"
+          className="pr-4 w-full"
         />
         {!isLargeScreen && (
           <div
