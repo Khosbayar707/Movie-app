@@ -5,6 +5,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import { Header } from "./_components/Header";
 import { Footer } from "./_components/Footer";
+import { ThemeProvider } from "next-themes";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const geistSans = Geist({
@@ -29,11 +30,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className}`}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <body className={`${montserrat.className}`}>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

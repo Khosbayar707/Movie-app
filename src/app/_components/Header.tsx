@@ -2,7 +2,6 @@ import Link from "next/link";
 import { Theme } from "./Theme";
 import { SearchButtonOrInput } from "./SearchInput";
 import { Genre } from "./FilterGenre";
-import { Suggestion } from "./Suggestion";
 
 export const Header = () => {
   return (
@@ -20,7 +19,7 @@ export const Header = () => {
           <div>
             <SearchButtonOrInput />
           </div>
-          <div className="">
+          <div>
             <Theme />
           </div>
         </div>

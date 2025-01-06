@@ -43,7 +43,7 @@ export function Suggestion({ searchValue }) {
           ))}
           {searchValue && (
             <Link href={`/search?query=${searchValue}`} onClick={closeDropdown}>
-              <div className="bg-white text-sm text-center p-2">
+              <div className="bg-secondary text-sm text-center p-2">
                 See all results for "{searchValue}"
               </div>
             </Link>

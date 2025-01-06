@@ -40,9 +40,7 @@ export default async function Home() {
             </div>
             <div className="text-[14px] w-[90%] mx-auto mt-6">
               <p>{data.results[0].overview}</p>
-            </div>
-            <div className="flex justify-start max-w-[70%]">
-              <div className="bg-[#18181B] text-sm text-white rounded-md flex gap-1 box-border p-2 w-[140px] m-6">
+              <div className="bg-[#18181B] text-sm text-white rounded-md flex gap-1 box-border p-2 w-[140px] my-6">
                 <Play />
                 <p>Watch Trailer</p>
               </div>
@@ -65,9 +63,7 @@ export default async function Home() {
             </div>
             <div className="text-[14px] w-[90%] mx-auto mt-6">
               <p>{data.results[1].overview}</p>
-            </div>
-            <div className="flex justify-start max-w-[70%]">
-              <div className="bg-[#18181B] text-sm text-white rounded-md flex gap-1 box-border p-2 w-[140px] m-6">
+              <div className="bg-[#18181B] text-sm text-white rounded-md flex gap-1 box-border p-2 w-[140px] my-6">
                 <Play />
                 <p>Watch Trailer</p>
               </div>
@@ -90,9 +86,7 @@ export default async function Home() {
             </div>
             <div className="text-[14px] w-[90%] mx-auto mt-6">
               <p>{data.results[2].overview}</p>
-            </div>
-            <div className="flex justify-start max-w-[70%]">
-              <div className="bg-[#18181B] text-sm text-white rounded-md flex gap-1 box-border p-2 w-[140px] m-6">
+              <div className="bg-[#18181B] text-sm text-white rounded-md flex gap-1 box-border p-2 w-[140px] my-6">
                 <Play />
                 <p>Watch Trailer</p>
               </div>

@@ -8,7 +8,7 @@ export function Card(props: Props) {
   // console.log("movie", props.prop);
   return (
     <Link href={`/movie/${props.prop?.id}`}>
-      <div className="mx-2 my-2 rounded-lg shadow-lg bg-white">
+      <div className="mx-2 my-2 rounded-lg shadow-lg bg-secondary">
         <div>
           <img
             src={`https://image.tmdb.org/t/p/w500/${props.prop?.poster_path}`}

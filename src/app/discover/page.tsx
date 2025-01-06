@@ -19,7 +19,7 @@ export default function Page() {
         options
       );
       const data = await response.json();
-      setMovies(data.results?.slice(0, 12));
+      setMovies(data.results?.slice(0, 24));
     };
     fetchMovies();
   }, [genre]);
