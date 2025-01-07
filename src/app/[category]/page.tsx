@@ -4,7 +4,7 @@ import { Card } from "../_components/Card";
 import { ArrowRight } from "lucide-react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { Pagination } from "../_components/Pagination";
+import { PaginationSeeMore } from "../_components/PaginationSeeMore";
 import { Movie } from "../types";
 import { options } from "../api";
 
@@ -60,7 +60,7 @@ export default function Page() {
           <Card key={index} prop={movie} />
         ))}
       </div>
-      <Pagination pageInfo={pageInfo} />
+      <PaginationSeeMore pageInfo={pageInfo} />
     </div>
   );
 }

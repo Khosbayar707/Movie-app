@@ -12,7 +12,7 @@ const getVisiblePages = (currentPages: number) => {
   return [currentPages - 1, currentPages, currentPages + 1];
 };
 
-export const Pagination = ({ pageInfo }: { pageInfo: PageInfo }) => {
+export const PaginationSeeMore = ({ pageInfo }: { pageInfo: PageInfo }) => {
   const searchParams = useSearchParams();
   const page = searchParams.get("page") || 1;
   const pathName = usePathname();
