@@ -3,16 +3,8 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/app/_components/Card";
 import Link from "next/link";
-
-export const API_KEY = "f39690f9830ce804b7894ac1def4f7e9";
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMzk2OTBmOTgzMGNlODA0Yjc4OTRhYzFkZWY0ZjdlOSIsIm5iZiI6MTczNDk0OTM3MS43NDIsInN1YiI6IjY3NjkzOWZiYzdmMTcyMDVkMTBiMGIxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2r2TerxSJdZGmGVSLVDkk6nHT0NPqY4rOcxHtMNt0aE",
-  },
-};
+import { options } from "@/app/api";
+import { Movie } from "@/app/types";
 
 export default async function Page({ params }) {
   const res = await fetch(
@@ -24,7 +16,7 @@ export default async function Page({ params }) {
   const genres = data?.genres;
   // console.log("seeking genres ---------", genres);
 
-  const names = genres.map((genre) => genre.name);
+  const names = genres.map((genre: String) => genre.name);
 
   const resCredit = await fetch(
     `https://api.themoviedb.org/3/movie/${params.id}/credits`,
@@ -35,8 +27,8 @@ export default async function Page({ params }) {
   const crew = movieCredits?.crew;
   const cast = movieCredits?.cast;
 
-  const director = crew.find((cr) => cr.job === "Director");
-  const writers = crew.filter((wr) => wr.department === "Writing");
+  const director = crew.find((cr: String) => cr.job === "Director");
+  const writers = crew.filter((wr: String) => wr.department === "Writing");
 
   const resSimilar = await fetch(
     `https://api.themoviedb.org/3/movie/${params.id}/recommendations`,
@@ -55,7 +47,7 @@ export default async function Page({ params }) {
   const Cast = ({ cast }) => {
     return (
       <div>
-        {cast?.slice(0, 3).map((member, index) => (
+        {cast?.slice(0, 3).map((member: String, index: Number) => (
           <div key={index}>{member.name}</div>
         ))}
       </div>
@@ -164,7 +156,7 @@ export default async function Page({ params }) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
           {movieSimilar &&
-            movieSimilar.slice(0, 8).map((movie) => {
+            movieSimilar.slice(0, 8).map((movie: Movie) => {
               return <Card prop={movie} />;
             })}
         </div>
