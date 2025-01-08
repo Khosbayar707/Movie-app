@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/app/_components/Card";
@@ -6,9 +5,18 @@ import Link from "next/link";
 import { options } from "@/app/api";
 import { Movie } from "@/app/types";
 
-export default async function Page({ params }) {
+type genre = {
+  id: number;
+  name: string;
+};
+type Props = {
+  params: {
+    id: string;
+  };
+};
+export default async function Page(props: any) {
   const res = await fetch(
-    ` https://api.themoviedb.org/3/movie/${params.id}`,
+    ` https://api.themoviedb.org/3/movie/${props.params.id}`,
     options
   );
   const data = await res.json();
@@ -16,10 +24,10 @@ export default async function Page({ params }) {
   const genres = data?.genres;
   // console.log("seeking genres ---------", genres);
 
-  const names = genres.map((genre: String) => genre.name);
+  const names = genres.map((genre: genre) => genre.name);
 
   const resCredit = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}/credits`,
+    `https://api.themoviedb.org/3/movie/${props.params.id}/credits`,
     options
   );
   const dataCredit = await resCredit.json();
@@ -31,7 +39,7 @@ export default async function Page({ params }) {
   const writers = crew.filter((wr: String) => wr.department === "Writing");
 
   const resSimilar = await fetch(
-    `https://api.themoviedb.org/3/movie/${params.id}/recommendations`,
+    `https://api.themoviedb.org/3/movie/${props.params.id}/recommendations`,
     options
   );
   const dataSimilar = await resSimilar.json();
@@ -43,7 +51,7 @@ export default async function Page({ params }) {
   //   })
   //   .slice(0, 2);
   // console.log("title----- ", FirstTwoMovies);
-
+  console.log(movieCredits);
   const Cast = ({ cast }) => {
     return (
       <div>
@@ -148,7 +156,7 @@ export default async function Page({ params }) {
         </div>
         <div className="flex justify-between w-[90%] mx-auto mt-12">
           <b className="text-lg">More like this</b>
-          <Link href={`${params.id}/recommendations`}>
+          <Link href={`${props.params.id}/recommendations`}>
             <button className="flex">
               See more <ArrowRight />
             </button>

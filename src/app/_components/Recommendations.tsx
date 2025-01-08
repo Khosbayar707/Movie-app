@@ -1,5 +1,5 @@
 import { ArrowRight } from "lucide-react";
-import { Movie } from "../[category]/page";
+import { Movie } from "../types";
 import { Card } from "../_components/Card";
 
 const options = {
@@ -11,9 +11,9 @@ const options = {
   },
 };
 
-export async function Recommendations({ id }) {
+export async function Recommendations({ id }: { id: number }) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/recommendations`,
+    `https://api.themoviedb.org/3/movie/${id.toString()}/recommendations`,
     options
   );
   const data = await res.json();
