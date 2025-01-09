@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { options } from "../api";
 import { useSearchParams } from "next/navigation";
 
@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <main>
       <b className="p-8">Results for "{genreName}"</b>
-      {children}
+      <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
     </main>
   );
 }

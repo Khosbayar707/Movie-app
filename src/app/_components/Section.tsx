@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Movie } from "../types";
 import { Card } from "../_components/Card";
+import { Suspense } from "react";
 
 const options = {
   method: "GET",
@@ -33,10 +34,12 @@ export async function Section(props: Props) {
         </a>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
-        {movies &&
-          movies.map((movie: Movie) => (
-            <Card prop={movie} key={`movie/${movie.id}`} />
-          ))}
+        <Suspense>
+          {movies &&
+            movies.map((movie: Movie) => (
+              <Card prop={movie} key={`movie/${movie.id}`} />
+            ))}
+        </Suspense>
       </div>
     </div>
   );

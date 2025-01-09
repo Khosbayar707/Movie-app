@@ -1,12 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { options } from "../api";
 import { Movie } from "../types";
 import { ResultCard } from "./ResultCard";
 import Link from "next/link";
 
-export function Suggestion({ searchValue }) {
+export function Suggestion({ searchValue }: { searchValue: any }) {
   const [movies, setMovies] = useState<Movie[]>();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,11 +36,14 @@ export function Suggestion({ searchValue }) {
     <div className="mx-auto absolute z-10">
       {isOpen && (
         <div className="border-2 border-gray-#E4E4E7 rounded-lg overflow-hidden min-w-[80%]">
-          {movies?.map((movie: Movie, index: number) => (
-            <div key={index} onClick={closeDropdown}>
-              <ResultCard prop={movie} />
-            </div>
-          ))}
+          <Suspense fallback={<div>Loading...</div>}>
+            {movies?.map((movie: Movie, index: number) => (
+              <div key={index} onClick={closeDropdown}>
+                <ResultCard prop={movie} />
+              </div>
+            ))}
+          </Suspense>
+
           {searchValue && (
             <Link href={`/search?query=${searchValue}`} onClick={closeDropdown}>
               <div className="bg-secondary text-sm text-center p-2">

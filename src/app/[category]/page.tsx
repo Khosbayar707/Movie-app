@@ -3,7 +3,7 @@
 import { Card } from "../_components/Card";
 import { ArrowRight } from "lucide-react";
 import { useParams, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { PaginationSeeMore } from "../_components/PaginationSeeMore";
 import { Movie } from "../types";
 import { options } from "../api";
@@ -56,9 +56,11 @@ export default function Page() {
         </button>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
-        {movies?.map((movie: Movie, index: number) => (
-          <Card key={index} prop={movie} />
-        ))}
+        <Suspense>
+          {movies?.map((movie: Movie, index: number) => (
+            <Card key={index} prop={movie} />
+          ))}
+        </Suspense>
       </div>
       <PaginationSeeMore pageInfo={pageInfo} />
     </div>

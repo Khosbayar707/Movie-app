@@ -4,6 +4,7 @@ import { Card } from "@/app/_components/Card";
 import Link from "next/link";
 import { options } from "@/app/api";
 import { Movie } from "@/app/types";
+import { Suspense } from "react";
 
 type genre = {
   id: number;
@@ -35,8 +36,8 @@ export default async function Page(props: any) {
   const crew = movieCredits?.crew;
   const cast = movieCredits?.cast;
 
-  const director = crew.find((cr: String) => cr.job === "Director");
-  const writers = crew.filter((wr: String) => wr.department === "Writing");
+  const director = crew.find((cr: any) => cr.job === "Director");
+  const writers = crew.filter((wr: any) => wr.department === "Writing");
 
   const resSimilar = await fetch(
     `https://api.themoviedb.org/3/movie/${props.params.id}/recommendations`,
@@ -52,12 +53,14 @@ export default async function Page(props: any) {
   //   .slice(0, 2);
   // console.log("title----- ", FirstTwoMovies);
   console.log(movieCredits);
-  const Cast = ({ cast }) => {
+  const Cast = ({ cast }: { cast: any }) => {
     return (
       <div>
-        {cast?.slice(0, 3).map((member: String, index: Number) => (
-          <div key={index}>{member.name}</div>
-        ))}
+        <Suspense>
+          {cast?.slice(0, 3).map((member: any) => (
+            <div>{member.name}</div>
+          ))}
+        </Suspense>
       </div>
     );
   };
@@ -163,10 +166,12 @@ export default async function Page(props: any) {
           </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
-          {movieSimilar &&
-            movieSimilar.slice(0, 8).map((movie: Movie) => {
-              return <Card prop={movie} />;
-            })}
+          <Suspense>
+            {movieSimilar &&
+              movieSimilar.slice(0, 8).map((movie: Movie) => {
+                return <Card prop={movie} />;
+              })}
+          </Suspense>
         </div>
       </div>
     </div>

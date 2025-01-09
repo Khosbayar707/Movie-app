@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/popover";
 import { ChevronDown } from "lucide-react";
 import { ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { options } from "../api";
 
 type Genre = {
@@ -50,17 +50,19 @@ export const Genre = () => {
           <ChevronDown />
         </PopoverTrigger>
         <PopoverContent className="rounded-xl text-[10px]">
-          {genres?.map((genre) => (
-            <Link href={`/discover?with_genres=${genre.id}`}>
-              <Badge
-                className="rounded-2xl m-1 text-[11px]"
-                key={`genre-${genre.id}`}
-                onClick={closePopover}
-              >
-                {genre?.name} <ChevronRight />
-              </Badge>
-            </Link>
-          ))}
+          <Suspense fallback={<div>Loading...</div>}>
+            {genres?.map((genre) => (
+              <Link href={`/discover?with_genres=${genre.id}`}>
+                <Badge
+                  className="rounded-2xl m-1 text-[11px]"
+                  key={`genre-${genre.id}`}
+                  onClick={closePopover}
+                >
+                  {genre?.name} <ChevronRight />
+                </Badge>
+              </Link>
+            ))}
+          </Suspense>
         </PopoverContent>
       </Popover>
     </div>

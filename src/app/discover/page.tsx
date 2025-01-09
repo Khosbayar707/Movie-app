@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Card } from "../_components/Card";
 import { Movie } from "../types";
 import { options } from "../api";
@@ -30,9 +30,11 @@ export default function Page() {
   return (
     <div className="flex justify-between w-[90%] mx-auto">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mx-auto my-6">
-        {movies?.map((movie: Movie, index: number) => (
-          <Card key={index} prop={movie} />
-        ))}
+        <Suspense>
+          {movies?.map((movie: Movie, index: number) => (
+            <Card key={index} prop={movie} />
+          ))}
+        </Suspense>
       </div>
     </div>
   );
