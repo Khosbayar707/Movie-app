@@ -52,7 +52,7 @@ export default async function Page(props: any) {
   //   })
   //   .slice(0, 2);
   // console.log("title----- ", FirstTwoMovies);
-  console.log(movieCredits);
+  // console.log(movieCredits);
   const Cast = ({ cast }: { cast: any }) => {
     return (
       <div>
