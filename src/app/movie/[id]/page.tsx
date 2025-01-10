@@ -1,10 +1,12 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/app/_components/Card";
 import Link from "next/link";
 import { options } from "@/app/api";
 import { Movie } from "@/app/types";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 type genre = {
   id: number;
@@ -15,36 +17,57 @@ type Props = {
     id: string;
   };
 };
-export default async function Page(props: any) {
-  const res = await fetch(
-    ` https://api.themoviedb.org/3/movie/${props.params.id}`,
-    options
-  );
-  const data = await res.json();
-  const movie = data;
-  const genres = data?.genres;
+export default function Page(props: Props) {
+  const [movies, setMovies] = useState([]);
+  useEffect(() => {
+    const fetchMovies = async () => {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/${props.params.id}`,
+        options
+      );
+      const data = await res.json();
+      setMovies(data);
+    };
+    fetchMovies();
+  }, [movies]);
+
   // console.log("seeking genres ---------", genres);
+  const genreNames = movies.map((genre: genre) => genre.name);
+  // console.log(names);
 
-  const names = genres.map((genre: genre) => genre.name);
+  const [credits, setCredits] = useState([]);
+  useEffect(() => {
+    const fetchCredits = async () => {
+      const resCredit = await fetch(
+        `https://api.themoviedb.org/3/movie/${props.params.id}/credits`,
+        options
+      );
+      const dataCredit = await resCredit.json();
+      setCredits(dataCredit);
+    };
+    fetchCredits();
+  }, []);
 
-  const resCredit = await fetch(
-    `https://api.themoviedb.org/3/movie/${props.params.id}/credits`,
-    options
-  );
-  const dataCredit = await resCredit.json();
-  const movieCredits = dataCredit;
-  const crew = movieCredits?.crew;
-  const cast = movieCredits?.cast;
+  const crew = credits?.crew;
+  const cast = credits?.cast;
 
-  const director = crew.find((cr: any) => cr.job === "Director");
-  const writers = crew.filter((wr: any) => wr.department === "Writing");
+  const director = crew?.find((cr: any) => cr.job === "Director");
+  const writers = crew?.filter((wr: any) => wr.department === "Writing");
 
-  const resSimilar = await fetch(
-    `https://api.themoviedb.org/3/movie/${props.params.id}/recommendations`,
-    options
-  );
-  const dataSimilar = await resSimilar.json();
-  const movieSimilar = dataSimilar.results;
+  const [recommendations, setRecommandations] = useState([]);
+  useEffect(() => {
+    const fetchRecs = async () => {
+      const resSimilar = await fetch(
+        `https://api.themoviedb.org/3/movie/${props.params.id}/recommendations`,
+        options
+      );
+      const dataSimilar = await resSimilar.json();
+      setRecommandations(dataSimilar);
+    };
+    fetchRecs();
+  }, []);
+
+  const movieSimilar = recommendations?.results;
 
   // const FirstTwoMovies = movieSimilar
   //   .map((movie) => {
@@ -66,8 +89,8 @@ export default async function Page(props: any) {
   };
 
   const Time = () => {
-    const hours = Math.floor(movie.runtime / 60);
-    const minutes = movie.runtime % 60;
+    const hours = Math.floor(movies?.runtime / 60);
+    const minutes = movies?.runtime % 60;
     return <h1>{`${hours}h ${minutes}`} </h1>;
   };
 
@@ -76,17 +99,17 @@ export default async function Page(props: any) {
       <div className="mx-auto mt-6">
         <div>
           <div className="text-[24px] mx-auto w-[90%]">
-            <b>{movie.title}</b>
+            <b>{movies?.title}</b>
           </div>
           <div className="mx-auto w-[90%]">
             <div className="flex justify-between">
               <div>
-                <h1>{movie.release_date}</h1>
+                <h1>{movies?.release_date}</h1>
                 <Time />
               </div>
               <div>
-                <h1>⭐️{movie.vote_average.toFixed(1)}/10</h1>
-                <h1>{movie.vote_count} votes</h1>
+                <h1>⭐️{movies?.vote_average?.toFixed(1)}/10</h1>
+                <h1>{movies?.vote_count} votes</h1>
               </div>
             </div>
           </div>
@@ -94,55 +117,57 @@ export default async function Page(props: any) {
         <div className="container mx-auto flex flex-wrap">
           <div className="relative w-full h-[350px] overflow-hidden mx-auto mt-4">
             <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/w500/${movies?.backdrop_path}`}
               alt="Movie Poster"
               className="shadow-lg absolute top-0 left-0 w-full h-full object-cover"
             />
           </div>
           <div className="flex items-start gap-4 mx-auto w-[90%]">
             <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500/${movies?.poster_path}`}
               alt="Movie Poster"
               className="mt-4 w-[auto] h-[350px]"
             />
-            <div>
-              <div className="font-bold p-4">
-                <h1>
-                  Genres:
-                  <Badge
-                    style={{
-                      border: "1px solid white",
-                      backgroundColor: "black",
-                      color: "white",
-                      marginLeft: 10,
-                    }}
-                  >
-                    {names[0]}
-                  </Badge>
-                  <Badge
-                    style={{
-                      border: "1px solid white",
-                      backgroundColor: "black",
-                      color: "white",
-                      marginLeft: 10,
-                    }}
-                  >
-                    {names[1]}
-                  </Badge>
-                  <Badge
-                    style={{
-                      border: "1px solid white",
-                      backgroundColor: "black",
-                      color: "white",
-                      marginLeft: 10,
-                    }}
-                  >
-                    {names[2]}
-                  </Badge>
-                </h1>
+            <Suspense>
+              <div>
+                <div className="font-bold p-4">
+                  <h1>
+                    Genres:
+                    <Badge
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "black",
+                        color: "white",
+                        marginLeft: 10,
+                      }}
+                    >
+                      {genreNames[0]}
+                    </Badge>
+                    <Badge
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "black",
+                        color: "white",
+                        marginLeft: 10,
+                      }}
+                    >
+                      {genreNames[1]}
+                    </Badge>
+                    <Badge
+                      style={{
+                        border: "1px solid white",
+                        backgroundColor: "black",
+                        color: "white",
+                        marginLeft: 10,
+                      }}
+                    >
+                      {genreNames[2]}
+                    </Badge>
+                  </h1>
+                </div>
+                <div className="text-justify">{movies?.overview}</div>
               </div>
-              <div className="text-justify">{movie.overview}</div>
-            </div>
+            </Suspense>
           </div>
         </div>
         <div className="w-[90%] mx-auto flex justify-between border-b border-gray-700 pb-2 my-4">

@@ -19,7 +19,7 @@ type Props = {
 };
 
 export function Section(props: Props) {
-  const [movies, setMovies] = useState();
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(

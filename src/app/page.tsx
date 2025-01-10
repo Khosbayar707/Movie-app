@@ -33,7 +33,7 @@ export default function Home() {
     };
     fetchMovies();
   }, []);
-  console.log(movies?.results[0].title);
+  // console.log(movies?.results[0].title);
 
   return (
     <div>

@@ -6,6 +6,9 @@ import { Montserrat } from "next/font/google";
 import { Header } from "./_components/Header";
 import { Footer } from "./_components/Footer";
 import { ThemeProvider } from "next-themes";
+import { Suspense } from "react";
+import Loading from "./loading";
+// import { Loading } from "./loading";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const geistSans = Geist({
@@ -38,7 +41,9 @@ export default function RootLayout({
       >
         <body className={`${montserrat.className}`}>
           <Header />
-          <main>{children}</main>
+          <main>
+            <Suspense fallback={<Loading />}> {children}</Suspense>
+          </main>
           <Footer />
         </body>
       </ThemeProvider>

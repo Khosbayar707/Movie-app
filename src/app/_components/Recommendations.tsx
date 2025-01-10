@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import { Movie } from "../types";
 import { Card } from "../_components/Card";

@@ -25,9 +25,8 @@ export default function Recommend() {
       const resJson = await res.json();
       setMovies(resJson.results);
     };
-
     fetchData();
-  }, []);
+  }, [movies]);
   return (
     <div>
       <div className="flex justify-between w-[90%] mx-auto mt-12">
