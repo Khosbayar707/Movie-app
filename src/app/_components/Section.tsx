@@ -1,7 +1,9 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 import { Movie } from "../types";
 import { Card } from "../_components/Card";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 const options = {
   method: "GET",
@@ -16,13 +18,21 @@ type Props = {
   endpoint: string;
 };
 
-export async function Section(props: Props) {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${props.endpoint}?language=en-US&page=1`,
-    options
-  );
-  const data = await res.json();
-  const movies = data.results?.slice(1, 13);
+export function Section(props: Props) {
+  const [movies, setMovies] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch(
+        `https://api.themoviedb.org/3/movie/${props.endpoint}?language=en-US&page=1`,
+        options
+      );
+      const data = await res.json();
+      const movies = data.results?.slice(1, 13);
+      setMovies(movies);
+    };
+    fetchData();
+  }, [movies]);
+
   return (
     <div>
       <div className="flex justify-between w-[90%] mx-auto">

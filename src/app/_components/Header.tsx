@@ -6,7 +6,7 @@ import { Genre } from "./FilterGenre";
 export const Header = () => {
   return (
     <div className="border-b bg-background">
-      <div className="container flex items-center justify-between py-3 mx-auto w-[80%]">
+      <div className="container flex items-center justify-between py-2 mx-auto w-[80%]">
         <a href="/">
           <div className="items-center ">
             <img src="/assets/Logo.svg" alt="logo" />
