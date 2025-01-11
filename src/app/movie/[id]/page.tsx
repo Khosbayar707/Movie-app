@@ -136,7 +136,7 @@ export default function Page(props: Props) {
                 <div className="font-bold p-4">
                   <h1>
                     Genres:
-                    {genreNames.map((name, index) => (
+                    {genreNames.map((name: string, index: any) => (
                       <Badge
                         key={index}
                         style={{
