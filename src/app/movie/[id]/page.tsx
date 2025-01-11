@@ -7,92 +7,95 @@ import Link from "next/link";
 import { options } from "@/app/api";
 import { Movie } from "@/app/types";
 import { Suspense, useEffect, useState } from "react";
+import { use } from "react";
 
-type genre = {
+type Genre = {
   id: number;
   name: string;
 };
+
 type Props = {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 };
+
 export default function Page(props: Props) {
-  const [movies, setMovies] = useState([]);
+  const params = use(props.params);
+  const [movies, setMovies] = useState<any>(null);
+  const [credits, setCredits] = useState<any>(null);
+  const [recommendations, setRecommendations] = useState<any>(null);
+
   useEffect(() => {
     const fetchMovies = async () => {
-      const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${props.params.id}`,
-        options
-      );
-      const data = await res.json();
-      setMovies(data);
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/${params.id}`,
+          options
+        );
+        const data = await res.json();
+        setMovies(data);
+      } catch (error) {
+        console.error("Error fetching movie details:", error);
+      }
     };
     fetchMovies();
-  }, [movies]);
+  }, [params.id]);
 
-  // console.log("seeking genres ---------", genres);
-  const genreNames = movies.map((genre: genre) => genre.name);
-  // console.log(names);
-
-  const [credits, setCredits] = useState([]);
   useEffect(() => {
     const fetchCredits = async () => {
-      const resCredit = await fetch(
-        `https://api.themoviedb.org/3/movie/${props.params.id}/credits`,
-        options
-      );
-      const dataCredit = await resCredit.json();
-      setCredits(dataCredit);
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/${params.id}/credits`,
+          options
+        );
+        const data = await res.json();
+        setCredits(data);
+      } catch (error) {
+        console.error("Error fetching credits:", error);
+      }
     };
     fetchCredits();
-  }, []);
+  }, [params.id]);
 
-  const crew = credits?.crew;
-  const cast = credits?.cast;
-
-  const director = crew?.find((cr: any) => cr.job === "Director");
-  const writers = crew?.filter((wr: any) => wr.department === "Writing");
-
-  const [recommendations, setRecommandations] = useState([]);
   useEffect(() => {
-    const fetchRecs = async () => {
-      const resSimilar = await fetch(
-        `https://api.themoviedb.org/3/movie/${props.params.id}/recommendations`,
-        options
-      );
-      const dataSimilar = await resSimilar.json();
-      setRecommandations(dataSimilar);
+    const fetchRecommendations = async () => {
+      try {
+        const res = await fetch(
+          `https://api.themoviedb.org/3/movie/${params.id}/recommendations`,
+          options
+        );
+        const data = await res.json();
+        setRecommendations(data);
+      } catch (error) {
+        console.error("Error fetching recommendations:", error);
+      }
     };
-    fetchRecs();
-  }, []);
+    fetchRecommendations();
+  }, [params.id]);
 
-  const movieSimilar = recommendations?.results;
-
-  // const FirstTwoMovies = movieSimilar
-  //   .map((movie) => {
-  //     return <div>{movie.title}</div>;
-  //   })
-  //   .slice(0, 2);
-  // console.log("title----- ", FirstTwoMovies);
-  // console.log(movieCredits);
-  const Cast = ({ cast }: { cast: any }) => {
-    return (
-      <div>
-        <Suspense>
-          {cast?.slice(0, 3).map((member: any) => (
-            <div>{member.name}</div>
-          ))}
-        </Suspense>
-      </div>
-    );
-  };
+  // Extract necessary data
+  const genreNames = movies?.genres?.map((genre: Genre) => genre.name) || [];
+  const crew = credits?.crew || [];
+  const cast = credits?.cast || [];
+  const director = crew.find((cr: any) => cr.job === "Director");
+  const writers = crew.filter((wr: any) => wr.department === "Writing");
+  const movieSimilar = recommendations?.results || [];
 
   const Time = () => {
-    const hours = Math.floor(movies?.runtime / 60);
-    const minutes = movies?.runtime % 60;
+    if (!movies?.runtime) return null;
+    const hours = Math.floor(movies.runtime / 60);
+    const minutes = movies.runtime % 60;
     return <h1>{`${hours}h ${minutes}`} </h1>;
   };
+
+  const Cast = ({ cast }: { cast: any[] }) => (
+    <div>
+      <Suspense>
+        {cast.slice(0, 3).map((member) => (
+          <div key={member.id}>{member.name}</div>
+        ))}
+      </Suspense>
+    </div>
+  );
 
   return (
     <div className="">
@@ -126,43 +129,26 @@ export default function Page(props: Props) {
             <img
               src={`https://image.tmdb.org/t/p/w500/${movies?.poster_path}`}
               alt="Movie Poster"
-              className="mt-4 w-[auto] h-[350px]"
+              className="mt-4 w-auto h-[350px]"
             />
             <Suspense>
               <div>
                 <div className="font-bold p-4">
                   <h1>
                     Genres:
-                    <Badge
-                      style={{
-                        border: "1px solid white",
-                        backgroundColor: "black",
-                        color: "white",
-                        marginLeft: 10,
-                      }}
-                    >
-                      {genreNames[0]}
-                    </Badge>
-                    <Badge
-                      style={{
-                        border: "1px solid white",
-                        backgroundColor: "black",
-                        color: "white",
-                        marginLeft: 10,
-                      }}
-                    >
-                      {genreNames[1]}
-                    </Badge>
-                    <Badge
-                      style={{
-                        border: "1px solid white",
-                        backgroundColor: "black",
-                        color: "white",
-                        marginLeft: 10,
-                      }}
-                    >
-                      {genreNames[2]}
-                    </Badge>
+                    {genreNames.map((name, index) => (
+                      <Badge
+                        key={index}
+                        style={{
+                          border: "1px solid white",
+                          backgroundColor: "black",
+                          color: "white",
+                          marginLeft: 10,
+                        }}
+                      >
+                        {name}
+                      </Badge>
+                    ))}
                   </h1>
                 </div>
                 <div className="text-justify">{movies?.overview}</div>
@@ -184,7 +170,7 @@ export default function Page(props: Props) {
         </div>
         <div className="flex justify-between w-[90%] mx-auto mt-12">
           <b className="text-lg">More like this</b>
-          <Link href={`${props.params.id}/recommendations`}>
+          <Link href={`${params.id}/recommendations`}>
             <button className="flex">
               See more <ArrowRight />
             </button>
@@ -192,10 +178,9 @@ export default function Page(props: Props) {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
           <Suspense>
-            {movieSimilar &&
-              movieSimilar.slice(0, 8).map((movie: Movie) => {
-                return <Card prop={movie} />;
-              })}
+            {movieSimilar.slice(0, 8).map((movie: Movie) => (
+              <Card key={movie.id} prop={movie} />
+            ))}
           </Suspense>
         </div>
       </div>
