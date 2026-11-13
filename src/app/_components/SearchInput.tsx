@@ -1,46 +1,173 @@
 "use client";
-import React, { useState } from "react";
-import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useMediaQuery } from "react-responsive";
+
+import { useEffect, useId, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { Loader2, Search, X } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { useTmdb } from "@/lib/tmdb";
+import { Movie, Paged } from "../types";
 import { Suggestion } from "./Suggestion";
 
-export const SearchButtonOrInput = () => {
-  const isLargeScreen = useMediaQuery({ minWidth: 550 });
-  const [searchValue, setSearchValue] = useState("");
-  const [showInput, setShowInput] = useState(false);
+type Props = {
+  className?: string;
+  autoFocus?: boolean;
+  /** Called after the visitor picks a result or submits a search. */
+  onNavigate?: () => void;
+};
 
-  // console.log("searchValue ----", searchValue);
+const MAX_SUGGESTIONS = 5;
 
-  if (isLargeScreen || showInput) {
-    return (
-      <div className="relative">
-        <Input
-          type="text"
-          onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="Search..."
-          autoFocus={showInput}
-          className="pr-4 w-full"
-        />
-        {!isLargeScreen && (
-          <div
-            onClick={() => setShowInput(false)}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2"
-          >
-            ✖
-          </div>
-        )}
-        <Suggestion searchValue={searchValue} />
-      </div>
-    );
-  }
+function useDebounced<T>(value: T, delay = 250) {
+  const [debounced, setDebounced] = useState(value);
+  useEffect(() => {
+    const id = window.setTimeout(() => setDebounced(value), delay);
+    return () => window.clearTimeout(id);
+  }, [value, delay]);
+  return debounced;
+}
+
+export const SearchButtonOrInput = ({ className, autoFocus, onNavigate }: Props) => {
+  const router = useRouter();
+  const listId = useId();
+  const rootRef = useRef<HTMLFormElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const [value, setValue] = useState("");
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(-1);
+
+  const query = useDebounced(value.trim());
+  const { data, isLoading, error } = useTmdb<Paged<Movie>>(query ? "search/movie" : null, {
+    query,
+    include_adult: "false",
+    page: 1,
+  });
+  const results = query ? data?.results?.slice(0, MAX_SUGGESTIONS) ?? [] : [];
+  const pending = value.trim() !== query || isLoading;
+
+  useEffect(() => {
+    if (autoFocus) inputRef.current?.focus();
+  }, [autoFocus]);
+
+  useEffect(() => setActive(-1), [query]);
+
+  // Close when the pointer goes down anywhere outside the field and its panel.
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, [open]);
+
+  const finish = () => {
+    setOpen(false);
+    setActive(-1);
+    inputRef.current?.blur();
+    onNavigate?.();
+  };
+
+  const goToMovie = (movie: Movie) => {
+    router.push(`/movie/${movie.id}`);
+    finish();
+  };
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (active >= 0 && results[active]) return goToMovie(results[active]);
+    const q = value.trim();
+    if (!q) return;
+    router.push(`/search?query=${encodeURIComponent(q)}`);
+    finish();
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "ArrowDown" && results.length) {
+      e.preventDefault();
+      setOpen(true);
+      setActive((i) => (i + 1) % results.length);
+    } else if (e.key === "ArrowUp" && results.length) {
+      e.preventDefault();
+      setActive((i) => (i <= 0 ? results.length - 1 : i - 1));
+    } else if (e.key === "Escape") {
+      if (open) {
+        e.preventDefault();
+        setOpen(false);
+        setActive(-1);
+      } else if (value) {
+        setValue("");
+      }
+    }
+  };
+
+  const showPanel = open && value.trim().length > 0;
 
   return (
-    <>
-      <Button variant="outline" size="icon" onClick={() => setShowInput(true)}>
-        <Search />
-      </Button>
-    </>
+    <form
+      ref={rootRef}
+      role="search"
+      onSubmit={onSubmit}
+      className={cn("relative", className)}
+    >
+      <label htmlFor={`${listId}-input`} className="sr-only">
+        Search movies
+      </label>
+      <Search
+        aria-hidden="true"
+        className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+      />
+      <input
+        ref={inputRef}
+        id={`${listId}-input`}
+        type="search"
+        role="combobox"
+        aria-expanded={showPanel}
+        aria-controls={listId}
+        aria-autocomplete="list"
+        aria-activedescendant={active >= 0 ? `${listId}-opt-${active}` : undefined}
+        autoComplete="off"
+        enterKeyHint="search"
+        placeholder="Search movies…"
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          setOpen(true);
+        }}
+        onFocus={() => setOpen(true)}
+        onKeyDown={onKeyDown}
+        className="h-10 w-full rounded-full border border-input bg-secondary/60 pl-9 pr-9 text-sm shadow-sm outline-none transition-[background-color,border-color,box-shadow] placeholder:text-muted-foreground hover:border-foreground/20 focus:border-primary/60 focus:bg-background focus:ring-4 focus:ring-primary/15 focus-visible:outline-none"
+      />
+      {value && (
+        <button
+          type="button"
+          onClick={() => {
+            setValue("");
+            inputRef.current?.focus();
+          }}
+          className="absolute right-2 top-1/2 grid size-7 -translate-y-1/2 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        >
+          {pending && query ? (
+            <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+          ) : (
+            <X aria-hidden="true" className="size-4" />
+          )}
+          <span className="sr-only">Clear search</span>
+        </button>
+      )}
+
+      {showPanel && (
+        <Suggestion
+          id={listId}
+          query={value.trim()}
+          results={results}
+          pending={pending}
+          error={Boolean(error)}
+          active={active}
+          onHover={setActive}
+          onPick={finish}
+        />
+      )}
+    </form>
   );
 };

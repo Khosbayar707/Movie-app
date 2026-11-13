@@ -1,68 +1,53 @@
 "use client";
 
-import { Card } from "../_components/Card";
-import { ArrowRight } from "lucide-react";
-import { useParams, useSearchParams } from "next/navigation";
-import { useState, useEffect, Suspense } from "react";
+import { notFound, useParams, useSearchParams } from "next/navigation";
+import { numberFormat, TMDB_MAX_PAGE, useTmdb } from "@/lib/tmdb";
+import { MovieGrid } from "../_components/MovieGrid";
 import { PaginationSeeMore } from "../_components/PaginationSeeMore";
-import { Movie } from "../types";
-import { options } from "../api";
+import { SectionHeader } from "../_components/SectionHeader";
+import { Movie, Paged } from "../types";
 
-type Props = {
-  params: Params;
-};
-type Params = {
-  category: string;
-};
-
-export type PageInfo = {
-  totalPages: number;
-  currentPages: number;
+const CATEGORIES: Record<string, string> = {
+  upcoming: "Upcoming",
+  top_rated: "Top Rated",
+  popular: "Popular",
+  now_playing: "Now Playing",
 };
 
 export default function Page() {
-  //   console.log("param----", props);
-  const params = useParams();
+  const params = useParams<{ category: string }>();
   const searchParams = useSearchParams();
-  const page = searchParams.get("page");
+  const page = Math.min(Math.max(Number(searchParams.get("page")) || 1, 1), TMDB_MAX_PAGE);
 
-  const [movies, setMovies] = useState<Movie[]>();
-  const [pageInfo, setPageInfo] = useState<PageInfo>({
-    totalPages: 0,
-    currentPages: 0,
-  });
+  const title = CATEGORIES[params.category];
+  const { data, error, isLoading, mutate } = useTmdb<Paged<Movie>>(
+    title ? `movie/${params.category}` : null,
+    { page }
+  );
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${params?.category}?language=en-US&page=${page}`,
-        options
-      );
-      const data = await response.json();
-      setMovies(data.results?.slice(0, 12));
-      setPageInfo({ currentPages: Number(page), totalPages: data.total_pages });
-    };
-    fetchMovies();
-  }, [page, params.category]);
-  // console.log(movies);
+  if (!title) notFound();
+
   return (
-    <div>
-      <div className="flex justify-between w-[90%] mx-auto mt-12">
-        <b className="text-lg">
-          {String(params.category).toUpperCase().replaceAll("_", " ")}
-        </b>
-        <button className="flex">
-          See more <ArrowRight />
-        </button>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 w-[90%] mx-auto my-6">
-        <Suspense>
-          {movies?.map((movie: Movie, index: number) => (
-            <Card key={index} prop={movie} />
-          ))}
-        </Suspense>
-      </div>
-      <PaginationSeeMore pageInfo={pageInfo} />
+    <div className="page-container py-10 sm:py-12">
+      <SectionHeader
+        as="h1"
+        title={title}
+        description={
+          data
+            ? `${numberFormat.format(data.total_results)} movies · Page ${page}`
+            : " "
+        }
+      />
+      <MovieGrid
+        movies={data?.results}
+        isLoading={isLoading}
+        error={error}
+        onRetry={() => mutate()}
+        skeletonCount={20}
+      />
+      {data && (
+        <PaginationSeeMore pageInfo={{ currentPages: page, totalPages: data.total_pages }} />
+      )}
     </div>
   );
 }

@@ -1,44 +1,69 @@
 "use client";
 
-import { useParams, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import { Card } from "../_components/Card";
-import { Movie } from "@/app/types";
-import { options } from "@/app/api";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { numberFormat, TMDB_MAX_PAGE, useTmdb } from "@/lib/tmdb";
+import { MovieGrid } from "../_components/MovieGrid";
+import { PaginationSeeMore } from "../_components/PaginationSeeMore";
+import { SectionHeader } from "../_components/SectionHeader";
+import { StateMessage } from "../_components/StateMessage";
+import { Movie, Paged } from "../types";
 
 export default function Page() {
   const searchParams = useSearchParams();
-  const query = searchParams.get("query");
+  const query = searchParams.get("query")?.trim() ?? "";
+  const page = Math.min(Math.max(Number(searchParams.get("page")) || 1, 1), TMDB_MAX_PAGE);
 
-  const [movies, setMovies] = useState<Movie[]>();
+  const { data, error, isLoading, mutate } = useTmdb<Paged<Movie>>(
+    query ? "search/movie" : null,
+    { query, include_adult: "false", page }
+  );
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
-        options
-      );
-      const data = await response.json();
-      setMovies(data.results?.slice(0, 20));
-    };
-    fetchMovies();
-  }, [query]);
+  if (!query) {
+    return (
+      <div className="page-container py-10 sm:py-12">
+        <SectionHeader as="h1" title="Search" />
+        <StateMessage
+          title="Search for a movie"
+          description="Type a title in the search bar at the top of the page."
+        />
+      </div>
+    );
+  }
 
-  // console.log(movies);
-  //   const titles = movies?.map(title)=>(movies.title)
+  const count = data?.total_results ?? 0;
 
   return (
-    <>
-      <div className="font-bold p-8">Search results for "{query}"</div>
-      <div className="flex justify-between w-[90%] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 mx-auto">
-          <Suspense fallback={<div>Loading...</div>}>
-            {movies?.map((movie: Movie) => (
-              <Card key={`movie-${movie.id}`} prop={movie} />
-            ))}
-          </Suspense>
-        </div>
-      </div>
-    </>
+    <div className="page-container py-10 sm:py-12">
+      <SectionHeader
+        as="h1"
+        title={<>Results for “{query}”</>}
+        description={
+          data ? `${numberFormat.format(count)} ${count === 1 ? "movie" : "movies"} found` : " "
+        }
+      />
+      <MovieGrid
+        movies={data?.results}
+        isLoading={isLoading}
+        error={error}
+        onRetry={() => mutate()}
+        skeletonCount={10}
+        empty={
+          <StateMessage
+            title={`No movies match “${query}”`}
+            description="Check the spelling, or try a shorter title."
+            action={
+              <Button asChild variant="outline">
+                <Link href="/popular">Browse popular movies</Link>
+              </Button>
+            }
+          />
+        }
+      />
+      {data && (
+        <PaginationSeeMore pageInfo={{ currentPages: page, totalPages: data.total_pages }} />
+      )}
+    </div>
   );
 }

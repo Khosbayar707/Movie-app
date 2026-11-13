@@ -1,43 +1,53 @@
-"use client";
+import { Mail, Phone } from "lucide-react";
 
-import { Mail } from "lucide-react";
-import { Phone } from "lucide-react";
+const socials = ["Facebook", "Instagram", "Twitter", "Youtube"];
 
 export function Footer() {
   return (
-    <footer>
-      <div className="w-full h-[280px] bg-indigo-700 box-border pt-4 text-white text-[14px]">
-        <div className="w-[70%] mb-2 mx-auto">
-          <img src="/assets/Logo (1).svg" alt="logo" className="m-4" />
-          <p>© 2024 Movie Z. All Rights Reserved.</p>
+    <footer className="mt-auto bg-footer text-footer-foreground">
+      <div className="page-container grid gap-10 py-12 text-sm md:grid-cols-[1fr_auto_auto] md:gap-16 lg:py-14">
+        <div className="space-y-4">
+          <img src="/assets/Logo (1).svg" alt="Movie Z" width={93} height={20} className="h-5 w-auto" />
+          <p className="text-footer-muted">© 2024 Movie Z. All Rights Reserved.</p>
+          <p className="max-w-xs text-xs leading-relaxed text-footer-muted">
+            Movie data and images from TMDB. This product uses the TMDB API but is not
+            endorsed or certified by TMDB.
+          </p>
         </div>
-        <div className="flex justify-around">
-          <div>
-            <p className="box-border pt-4">Contact Information</p>
-            <div className="box-border pt-2">
-              <div className="flex gap-2">
-                <Mail />
-                <p>Email:</p>
+
+        <div>
+          <h2 className="mb-4 font-semibold">Contact Information</h2>
+          <ul className="space-y-4">
+            <li className="flex items-start gap-3">
+              <Mail aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
+              <div>
+                <p className="text-footer-muted">Email</p>
+                <a href="mailto:support@movieZ.com" className="font-medium underline-offset-4 hover:underline">
+                  support@movieZ.com
+                </a>
               </div>
-              <p>support@movieZ.com</p>
-            </div>
-            <div className="box-border pt-2">
-              <div className="flex gap-2">
-                <Phone />
-                <p>Phone:</p>
+            </li>
+            <li className="flex items-start gap-3">
+              <Phone aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
+              <div>
+                <p className="text-footer-muted">Phone</p>
+                <a href="tel:+976111234567" className="font-medium tabular-nums underline-offset-4 hover:underline">
+                  +976 (11) 123-4567
+                </a>
               </div>
-              <p>+976 (11) 123-4567</p>
-            </div>
-          </div>
-          <div>
-            <p className="p-4">Follow us</p>
-            <div className="pl-4">
-              <p className="mb-1">Facebook</p>
-              <p className="mb-1">Instagram</p>
-              <p className="mb-1">Twitter</p>
-              <p className="mb-1">Youtube</p>
-            </div>
-          </div>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="mb-4 font-semibold">Follow us</h2>
+          <ul className="flex flex-wrap gap-x-5 gap-y-2 md:flex-col">
+            {socials.map((name) => (
+              <li key={name} className="text-footer-muted">
+                {name}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </footer>
