@@ -136,7 +136,7 @@ export const SearchButtonOrInput = ({ className, autoFocus, onNavigate }: Props)
         }}
         onFocus={() => setOpen(true)}
         onKeyDown={onKeyDown}
-        className="h-10 w-full rounded-full border border-input bg-secondary/60 pl-9 pr-9 text-sm shadow-sm outline-none transition-[background-color,border-color,box-shadow] placeholder:text-muted-foreground hover:border-foreground/20 focus:border-primary/60 focus:bg-background focus:ring-4 focus:ring-primary/15 focus-visible:outline-none"
+        className="h-10 w-full border border-input bg-background pl-9 pr-9 text-sm outline-none transition-[border-color,box-shadow] duration-150 placeholder:text-muted-foreground hover:border-rule focus:border-rule focus:shadow-[inset_0_-2px_0_hsl(var(--primary))] focus-visible:outline-none"
       />
       {value && (
         <button
@@ -145,7 +145,7 @@ export const SearchButtonOrInput = ({ className, autoFocus, onNavigate }: Props)
             setValue("");
             inputRef.current?.focus();
           }}
-          className="absolute right-2 top-1/2 grid size-7 -translate-y-1/2 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          className="absolute right-1.5 top-1/2 grid size-7 -translate-y-1/2 place-items-center text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
         >
           {pending && query ? (
             <Loader2 aria-hidden="true" className="size-4 animate-spin" />

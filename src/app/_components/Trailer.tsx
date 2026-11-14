@@ -55,23 +55,23 @@ export function Trailer({ movieId, title, videos, variant, size = "lg", classNam
           // Clicking the backdrop (the dialog element itself) closes it.
           if (e.target === e.currentTarget) setOpen(false);
         }}
-        className="m-auto w-[min(1100px,calc(100vw-2rem))] overflow-visible bg-transparent p-0 text-white backdrop:bg-black/85 backdrop:backdrop-blur-sm"
+        className="m-auto w-[min(1100px,calc(100vw-2rem))] overflow-visible border-[3px] border-white bg-black p-0 text-white backdrop:bg-black/90"
       >
-        <div className="mb-3 flex items-center justify-between gap-4">
-          <p className="truncate text-sm font-medium text-white/80">{title}</p>
+        <div className="flex items-center justify-between gap-4 border-b border-white/25 py-1 pl-4 pr-1">
+          <p className="font-condensed truncate text-lg font-bold uppercase">{title} <span className="font-sans text-xs font-semibold normal-case tracking-normal text-white/60">Trailer</span></p>
           <Button
             variant="ghost"
             size="icon"
             autoFocus
             onClick={() => setOpen(false)}
-            className="shrink-0 text-white hover:bg-white/15 hover:text-white"
+            className="shrink-0 text-white hover:bg-white hover:text-black"
           >
             <X aria-hidden="true" />
             <span className="sr-only">Close trailer</span>
           </Button>
         </div>
 
-        <div className="relative aspect-video overflow-hidden rounded-xl bg-black shadow-2xl">
+        <div className="relative aspect-video overflow-hidden bg-black">
           {open && trailer ? (
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&rel=0`}

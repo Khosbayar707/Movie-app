@@ -41,11 +41,7 @@ export default {
           foreground: "hsl(var(--destructive-foreground))",
         },
         rating: "hsl(var(--rating))",
-        footer: {
-          DEFAULT: "hsl(var(--footer))",
-          foreground: "hsl(var(--footer-foreground))",
-          muted: "hsl(var(--footer-muted))",
-        },
+        rule: "hsl(var(--rule))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -58,24 +54,18 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        // The listings page has no rounded corners.
+        xl: "0px",
+        lg: "0px",
+        md: "0px",
+        sm: "0px",
+        DEFAULT: "0px",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
-      },
-      keyframes: {
-        "hero-in": {
-          from: { opacity: "0", transform: "translateY(12px)", filter: "blur(6px)" },
-          to: { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
-        },
-      },
-      animation: {
-        "hero-in": "hero-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both",
       },
     },
   },

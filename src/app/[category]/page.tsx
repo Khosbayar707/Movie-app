@@ -2,8 +2,7 @@
 
 import { notFound, useParams, useSearchParams } from "next/navigation";
 import { numberFormat, TMDB_MAX_PAGE, useTmdb } from "@/lib/tmdb";
-import { MovieGrid } from "../_components/MovieGrid";
-import { PaginationSeeMore } from "../_components/PaginationSeeMore";
+import { ResultsView, ViewToggle } from "../_components/ResultsView";
 import { SectionHeader } from "../_components/SectionHeader";
 import { Movie, Paged } from "../types";
 
@@ -28,26 +27,14 @@ export default function Page() {
   if (!title) notFound();
 
   return (
-    <div className="page-container py-10 sm:py-12">
+    <div className="page-container py-8 sm:py-10">
       <SectionHeader
         as="h1"
         title={title}
-        description={
-          data
-            ? `${numberFormat.format(data.total_results)} movies · Page ${page}`
-            : " "
-        }
+        description={data ? `${numberFormat.format(data.total_results)} films listed` : " "}
+        aside={<ViewToggle />}
       />
-      <MovieGrid
-        movies={data?.results}
-        isLoading={isLoading}
-        error={error}
-        onRetry={() => mutate()}
-        skeletonCount={20}
-      />
-      {data && (
-        <PaginationSeeMore pageInfo={{ currentPages: page, totalPages: data.total_pages }} />
-      )}
+      <ResultsView data={data} isLoading={isLoading} error={error} onRetry={() => mutate()} page={page} />
     </div>
   );
 }
