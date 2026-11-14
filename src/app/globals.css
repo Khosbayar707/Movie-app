@@ -2,34 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * The Listings Weekly.
+ * Day edition: printed ink on bright stock, indigo as the one spot ink for anything you can press.
+ * Late edition: the same page reversed out of a night-black plate.
+ */
 @layer base {
-  /* Light: paper-white surfaces, Movie Z indigo as the single accent. */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 6%;
+    --background: 60 14% 98.5%; /* stock */
+    --foreground: 250 13% 9%; /* ink */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 6%;
+    --card-foreground: 250 13% 9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 6%;
-    --primary: 244 58% 51%;
+    --popover-foreground: 250 13% 9%;
+    --primary: 244 58% 51%; /* Movie Z indigo, spot ink */
     --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 10% 10%;
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 40%;
-    --accent: 244 60% 96%;
-    --accent-foreground: 244 58% 40%;
-    --destructive: 0 72% 51%;
+    --secondary: 250 10% 94%;
+    --secondary-foreground: 250 13% 9%;
+    --muted: 250 10% 93.5%;
+    --muted-foreground: 250 6% 38%;
+    --accent: 244 70% 96%;
+    --accent-foreground: 244 58% 42%;
+    --destructive: 2 70% 46%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 6% 90%;
-    --input: 240 6% 88%;
+    --border: 250 9% 86%; /* hairline rule */
+    --rule: 250 13% 9%; /* heavy rule, printed in ink */
+    --input: 250 9% 78%;
     --ring: 244 58% 51%;
-    --radius: 0.625rem;
+    --radius: 0rem;
 
-    --rating: 40 96% 50%;
-    --footer: 244 58% 51%;
-    --footer-foreground: 244 100% 97%;
-    --footer-muted: 244 90% 88%;
+    --rating: 38 88% 50%;
 
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -38,32 +40,29 @@
     --chart-5: 27 87% 67%;
   }
 
-  /* Dark: a projection-room near-black with a faint indigo cast. */
   .dark {
-    --background: 240 14% 5%;
-    --foreground: 240 10% 96%;
-    --card: 240 12% 8%;
-    --card-foreground: 240 10% 96%;
-    --popover: 240 12% 9%;
-    --popover-foreground: 240 10% 96%;
-    --primary: 236 86% 72%;
-    --primary-foreground: 244 50% 12%;
-    --secondary: 240 9% 13%;
-    --secondary-foreground: 240 10% 96%;
-    --muted: 240 9% 13%;
-    --muted-foreground: 240 6% 66%;
-    --accent: 244 30% 18%;
-    --accent-foreground: 236 90% 85%;
-    --destructive: 0 70% 58%;
+    --background: 250 16% 6%;
+    --foreground: 250 14% 93%;
+    --card: 250 14% 8.5%;
+    --card-foreground: 250 14% 93%;
+    --popover: 250 14% 9%;
+    --popover-foreground: 250 14% 93%;
+    --primary: 237 88% 74%;
+    --primary-foreground: 246 50% 10%;
+    --secondary: 250 10% 13%;
+    --secondary-foreground: 250 14% 93%;
+    --muted: 250 10% 12.5%;
+    --muted-foreground: 250 7% 66%;
+    --accent: 244 32% 17%;
+    --accent-foreground: 237 92% 86%;
+    --destructive: 2 75% 62%;
     --destructive-foreground: 0 0% 100%;
-    --border: 240 8% 17%;
-    --input: 240 8% 20%;
-    --ring: 236 86% 72%;
+    --border: 250 8% 19%;
+    --rule: 250 14% 88%;
+    --input: 250 8% 28%;
+    --ring: 237 88% 74%;
 
-    --rating: 42 96% 58%;
-    --footer: 244 40% 14%;
-    --footer-foreground: 244 60% 96%;
-    --footer-muted: 240 25% 72%;
+    --rating: 40 92% 60%;
 
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
@@ -80,7 +79,7 @@
 
   html {
     color-scheme: light;
-    scrollbar-color: hsl(var(--muted-foreground) / 0.45) transparent;
+    scrollbar-color: hsl(var(--foreground) / 0.35) transparent;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -88,22 +87,22 @@
     color-scheme: dark;
   }
 
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "kern", "liga";
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-  }
-
   /* Lock page scroll while a modal (the trailer player) is open. */
   html:has(dialog[open]) {
     overflow: hidden;
   }
 
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "kern", "liga", "tnum" 0;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
   ::selection {
-    background: hsl(var(--primary) / 0.22);
-    color: hsl(var(--foreground));
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 
   input,
@@ -116,7 +115,11 @@
     outline-offset: 2px;
   }
 
-  /* Clear the native "x" on search inputs; the app draws its own control. */
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
   input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
   }
@@ -129,20 +132,54 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.35);
-    border-radius: 999px;
-    border: 2px solid hsl(var(--background));
+    background: hsl(var(--foreground) / 0.3);
+    border: 3px solid hsl(var(--background));
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.6);
+    background: hsl(var(--foreground) / 0.55);
   }
 }
 
 @layer components {
-  /* One shared gutter and max width for every page section. */
+  /* One shared measure and gutter for every page band. */
   .page-container {
     @apply mx-auto w-full max-w-[1440px] px-4 sm:px-6 lg:px-10;
   }
+
+  /* Condensed headline voice: Archivo pulled to its narrow width. */
+  .font-condensed {
+    font-variation-settings: "wdth" 72;
+    font-stretch: 72%;
+    word-spacing: 0.1em;
+  }
+  .font-extra-condensed {
+    font-variation-settings: "wdth" 62;
+    font-stretch: 62%;
+    word-spacing: 0.12em;
+  }
+
+  /*
+   * A ruled grid set straight under a section head shares the head's closing
+   * hairline instead of drawing a second rule beneath it.
+   */
+  .section-head:has(+ .ruled-top) {
+    margin-bottom: 0;
+  }
+  .section-head + .ruled-top {
+    border-top-color: transparent;
+  }
+
+  /* Small all-caps label set like a listings column head. */
+  .label-caps {
+    @apply text-[11px] font-semibold uppercase tracking-[0.08em];
+  }
+
+  /* Section head: a heavy rule over the head, a hairline closing it underneath. */
+  .rule-double {
+    border-top: 3px solid hsl(var(--rule));
+    box-shadow: 0 4px 0 -3px hsl(var(--rule));
+  }
+
 }
 
 @layer utilities {
@@ -152,6 +189,19 @@
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* A fresh still "prints in": ink first, then the full photograph comes up. */
+@keyframes print-in {
+  from {
+    filter: grayscale(1) contrast(1.35);
+  }
+  to {
+    filter: none;
+  }
+}
+.print-in {
+  animation: print-in 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {

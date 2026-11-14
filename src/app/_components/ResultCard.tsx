@@ -21,11 +21,11 @@ export function ResultCard({ movie, active, onClick }: Props) {
       onClick={onClick}
       tabIndex={-1}
       className={cn(
-        "flex items-center gap-3 rounded-lg p-1.5 transition-colors",
-        active ? "bg-accent text-accent-foreground" : "hover:bg-accent/60"
+        "flex items-center gap-3 px-3 py-2 transition-colors duration-150",
+        active ? "bg-accent" : "hover:bg-secondary"
       )}
     >
-      <div className="grid h-[60px] w-10 shrink-0 place-items-center overflow-hidden rounded bg-muted">
+      <div className="grid h-[60px] w-10 shrink-0 place-items-center overflow-hidden bg-muted">
         {poster ? (
           <img src={poster} alt="" loading="lazy" className="size-full object-cover" />
         ) : (
@@ -33,7 +33,7 @@ export function ResultCard({ movie, active, onClick }: Props) {
         )}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-semibold">{movie.title}</p>
+        <p className="font-condensed truncate text-base font-bold leading-tight">{movie.title}</p>
         <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
           <Rating value={movie.vote_average} />
           {year && (

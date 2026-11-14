@@ -22,7 +22,7 @@ function getVisiblePages(current: number, total: number): (number | "gap")[] {
 }
 
 const itemClass =
-  "inline-flex h-9 min-w-9 items-center justify-center gap-1 rounded-md px-3 text-sm font-medium tabular-nums transition-colors";
+  "font-condensed inline-flex h-10 min-w-10 items-center justify-center gap-1 border border-transparent px-3 text-base font-bold tabular-nums transition-colors duration-150";
 
 export const PaginationSeeMore = ({ pageInfo }: { pageInfo: PageInfo }) => {
   const searchParams = useSearchParams();
@@ -42,8 +42,11 @@ export const PaginationSeeMore = ({ pageInfo }: { pageInfo: PageInfo }) => {
   const nextDisabled = current >= total;
 
   return (
-    <nav aria-label="Pagination" className="mt-12 flex justify-center">
-      <ul className="flex flex-wrap items-center justify-center gap-1">
+    <nav aria-label="Pagination" className="mt-10 flex items-center justify-between gap-4 border-t-[3px] border-rule pt-4">
+      <p className="label-caps hidden text-muted-foreground sm:block">
+        Page <span className="tabular-nums">{current}</span> of <span className="tabular-nums">{total}</span>
+      </p>
+      <ul className="mx-auto flex flex-wrap items-center justify-center gap-1 sm:mx-0">
         <li>
           {prevDisabled ? (
             <span aria-disabled="true" className={cn(itemClass, "pointer-events-none opacity-40")}>
@@ -51,7 +54,7 @@ export const PaginationSeeMore = ({ pageInfo }: { pageInfo: PageInfo }) => {
               <span className="hidden sm:inline">Previous</span>
             </span>
           ) : (
-            <Link href={hrefFor(current - 1)} className={cn(itemClass, "hover:bg-accent hover:text-accent-foreground")}>
+            <Link href={hrefFor(current - 1)} className={cn(itemClass, "border-border hover:border-rule hover:bg-foreground hover:text-background")}>
               <ChevronLeft aria-hidden="true" className="size-4" />
               <span className="hidden sm:inline">Previous</span>
               <span className="sr-only sm:hidden">Previous page</span>
@@ -73,8 +76,8 @@ export const PaginationSeeMore = ({ pageInfo }: { pageInfo: PageInfo }) => {
                 className={cn(
                   itemClass,
                   page === current
-                    ? "border border-primary/40 bg-accent text-accent-foreground"
-                    : "hover:bg-accent hover:text-accent-foreground"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border hover:border-rule hover:bg-foreground hover:text-background"
                 )}
               >
                 {page}
@@ -90,7 +93,7 @@ export const PaginationSeeMore = ({ pageInfo }: { pageInfo: PageInfo }) => {
               <ChevronRight aria-hidden="true" className="size-4" />
             </span>
           ) : (
-            <Link href={hrefFor(current + 1)} className={cn(itemClass, "hover:bg-accent hover:text-accent-foreground")}>
+            <Link href={hrefFor(current + 1)} className={cn(itemClass, "border-border hover:border-rule hover:bg-foreground hover:text-background")}>
               <span className="hidden sm:inline">Next</span>
               <span className="sr-only sm:hidden">Next page</span>
               <ChevronRight aria-hidden="true" className="size-4" />

@@ -21,9 +21,9 @@ export function Suggestion({ id, query, results, pending, error, active, onHover
   const hasResults = results.length > 0;
 
   return (
-    <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 overflow-hidden rounded-xl border bg-popover text-popover-foreground shadow-[0_18px_40px_-16px_rgb(0_0_0/0.35)] md:left-1/2 md:right-auto md:w-[min(480px,calc(100vw-2rem))] md:-translate-x-1/2">
+    <div className="absolute left-0 right-0 top-[calc(100%+0.375rem)] z-50 overflow-hidden border border-rule bg-popover text-popover-foreground shadow-[0_18px_40px_-20px_rgb(0_0_0/0.45)] md:left-auto md:w-[min(460px,calc(100vw-2rem))]">
       {hasResults ? (
-        <ul id={id} role="listbox" aria-label="Suggested movies" className="max-h-[min(60vh,440px)] overflow-y-auto p-1.5">
+        <ul id={id} role="listbox" aria-label="Suggested movies" className="max-h-[min(60vh,440px)] divide-y divide-border overflow-y-auto">
           {results.map((movie, i) => (
             <li
               key={movie.id}
@@ -40,7 +40,7 @@ export function Suggestion({ id, query, results, pending, error, active, onHover
         <div id={id} className="space-y-1.5 p-3" aria-busy="true" aria-label="Searching">
           {Array.from({ length: 3 }, (_, i) => (
             <div key={i} className="flex items-center gap-3 p-1.5">
-              <Skeleton className="h-[60px] w-10 shrink-0 rounded" />
+              <Skeleton className="h-[60px] w-10 shrink-0" />
               <div className="flex-1 space-y-2">
                 <Skeleton className="h-3.5 w-3/4" />
                 <Skeleton className="h-3 w-1/3" />
@@ -58,7 +58,7 @@ export function Suggestion({ id, query, results, pending, error, active, onHover
         <Link
           href={`/search?query=${encodeURIComponent(query)}`}
           onClick={onPick}
-          className="flex items-center justify-between gap-2 border-t px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+          className="flex items-center justify-between gap-2 border-t border-rule px-4 py-3 text-sm font-semibold text-primary transition-colors hover:bg-accent"
         >
           <span className="truncate">See all results for “{query}”</span>
           <ArrowRight aria-hidden="true" className="size-4 shrink-0" />

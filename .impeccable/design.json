@@ -1,0 +1,788 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T16:44:14.470Z",
+  "title": "Design System: Movie Z",
+  "extensions": {
+    "colorMeta": {
+      "movie-z-indigo": {
+        "role": "primary",
+        "displayName": "Movie Z Indigo",
+        "canonical": "hsl(244 58% 51%)",
+        "hex": "#433acb",
+        "oklch": "oklch(46.0% 0.214 276.9)",
+        "tonalRamp": [
+          "#070031",
+          "#1c056e",
+          "#3318af",
+          "#4b45d6",
+          "#676bfe",
+          "#8f9bfd",
+          "#bbc5fe",
+          "#eaedff"
+        ],
+        "brandHex": "#4338CA"
+      },
+      "indigo-wash": {
+        "role": "primary",
+        "displayName": "Indigo Wash",
+        "canonical": "hsl(244 70% 96%)",
+        "hex": "#efeefc",
+        "oklch": "oklch(95.3% 0.019 289.1)",
+        "tonalRamp": [
+          "#0b0a13",
+          "#25242e",
+          "#41404c",
+          "#61606c",
+          "#82818d",
+          "#a4a3b1",
+          "#c8c7d5",
+          "#eeedfb"
+        ]
+      },
+      "indigo-deep": {
+        "role": "primary",
+        "displayName": "Indigo Deep",
+        "canonical": "hsl(244 58% 42%)",
+        "hex": "#352da9",
+        "oklch": "oklch(39.9% 0.189 276.5)",
+        "tonalRamp": [
+          "#070030",
+          "#1b0270",
+          "#3126a2",
+          "#4b4cc9",
+          "#6870f0",
+          "#8f9cfb",
+          "#bbc5fd",
+          "#eaeefe"
+        ]
+      },
+      "star-gold": {
+        "role": "secondary",
+        "displayName": "Star Gold",
+        "canonical": "hsl(38 88% 50%)",
+        "hex": "#f09d0f",
+        "oklch": "oklch(76.1% 0.161 71.5)",
+        "tonalRamp": [
+          "#140800",
+          "#352001",
+          "#5b3a04",
+          "#84560c",
+          "#b07414",
+          "#df920b",
+          "#feba62",
+          "#feebd5"
+        ]
+      },
+      "bright-stock": {
+        "role": "neutral",
+        "displayName": "Bright Stock",
+        "canonical": "hsl(60 14% 98.5%)",
+        "hex": "#fcfcfb",
+        "oklch": "oklch(99.0% 0.001 106.4)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252524",
+          "#424241",
+          "#616160",
+          "#828281",
+          "#a5a5a4",
+          "#c9c9c8",
+          "#eeeeed"
+        ]
+      },
+      "paper-white": {
+        "role": "neutral",
+        "displayName": "Paper White",
+        "canonical": "hsl(0 0% 100%)",
+        "hex": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "printers-ink": {
+        "role": "neutral",
+        "displayName": "Printer's Ink",
+        "canonical": "hsl(250 13% 9%)",
+        "hex": "#15141a",
+        "oklch": "oklch(19.5% 0.012 292.9)",
+        "tonalRamp": [
+          "#0b0a10",
+          "#25242a",
+          "#424148",
+          "#616068",
+          "#828189",
+          "#a5a4ac",
+          "#c9c8d0",
+          "#eeedf6"
+        ]
+      },
+      "newsprint-grey": {
+        "role": "neutral",
+        "displayName": "Newsprint Grey",
+        "canonical": "hsl(250 10% 94%)",
+        "hex": "#efeef1",
+        "oklch": "oklch(95.1% 0.004 294.0)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252527",
+          "#424244",
+          "#616163",
+          "#828285",
+          "#a5a4a7",
+          "#c9c9cb",
+          "#eeeef1"
+        ]
+      },
+      "plate-tint": {
+        "role": "neutral",
+        "displayName": "Plate Tint",
+        "canonical": "hsl(250 10% 93.5%)",
+        "hex": "#ededf0",
+        "oklch": "oklch(94.7% 0.004 294.0)",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#252527",
+          "#424144",
+          "#616163",
+          "#828285",
+          "#a5a4a8",
+          "#c9c8cc",
+          "#eeeef1"
+        ]
+      },
+      "faded-ink": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "hsl(250 6% 38%)",
+        "hex": "#5d5b67",
+        "oklch": "oklch(47.7% 0.019 293.3)",
+        "tonalRamp": [
+          "#0b0a12",
+          "#25232d",
+          "#42404b",
+          "#615f6b",
+          "#82808d",
+          "#a5a3b0",
+          "#c9c7d4",
+          "#efecfa"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "hsl(250 9% 86%)",
+        "hex": "#d9d8df",
+        "oklch": "oklch(88.5% 0.009 293.9)",
+        "tonalRamp": [
+          "#0b0a0f",
+          "#252429",
+          "#424146",
+          "#616066",
+          "#828187",
+          "#a5a4aa",
+          "#c9c8ce",
+          "#eeedf4"
+        ]
+      },
+      "field-rule": {
+        "role": "neutral",
+        "displayName": "Field Rule",
+        "canonical": "hsl(250 9% 78%)",
+        "hex": "#c4c2cc",
+        "oklch": "oklch(81.8% 0.014 293.7)",
+        "tonalRamp": [
+          "#0b0a11",
+          "#25242b",
+          "#424149",
+          "#616069",
+          "#82818a",
+          "#a5a3ad",
+          "#c9c8d2",
+          "#efedf7"
+        ]
+      },
+      "proof-red": {
+        "role": "error",
+        "displayName": "Proof Red",
+        "canonical": "hsl(2 70% 46%)",
+        "hex": "#c72923",
+        "oklch": "oklch(54.1% 0.195 28.1)",
+        "tonalRamp": [
+          "#1e0000",
+          "#4c0203",
+          "#7f0508",
+          "#b60e11",
+          "#df4238",
+          "#fc7667",
+          "#ffb3a8",
+          "#fee9e6"
+        ]
+      },
+      "night-plate": {
+        "role": "neutral",
+        "displayName": "Night Plate (late edition ground)",
+        "canonical": "hsl(250 16% 6%)",
+        "hex": "#0e0d12",
+        "oklch": "oklch(16.2% 0.010 292.9)",
+        "tonalRamp": [
+          "#0b0a0f",
+          "#25242a",
+          "#424147",
+          "#616067",
+          "#828188",
+          "#a5a4ab",
+          "#c9c8cf",
+          "#eeedf5"
+        ]
+      },
+      "reversed-ink": {
+        "role": "neutral",
+        "displayName": "Reversed Ink (late edition text)",
+        "canonical": "hsl(250 14% 93%)",
+        "hex": "#ebebf0",
+        "oklch": "oklch(94.1% 0.007 293.9)",
+        "tonalRamp": [
+          "#0b0b0e",
+          "#252428",
+          "#424145",
+          "#616065",
+          "#828286",
+          "#a5a4a9",
+          "#c9c8cd",
+          "#eeeef3"
+        ]
+      },
+      "night-popover": {
+        "role": "neutral",
+        "displayName": "Night Popover",
+        "canonical": "hsl(250 14% 9%)",
+        "hex": "#15141a",
+        "oklch": "oklch(19.4% 0.013 292.8)",
+        "tonalRamp": [
+          "#0b0a10",
+          "#25242b",
+          "#424148",
+          "#616068",
+          "#82818a",
+          "#a5a4ad",
+          "#c9c8d1",
+          "#eeedf7"
+        ]
+      },
+      "indigo-late": {
+        "role": "primary",
+        "displayName": "Indigo, Late Edition",
+        "canonical": "hsl(237 88% 74%)",
+        "hex": "#8288f7",
+        "oklch": "oklch(67.3% 0.162 278.8)",
+        "tonalRamp": [
+          "#080030",
+          "#1e056c",
+          "#352d94",
+          "#5151ba",
+          "#7074e0",
+          "#929aff",
+          "#bdc5fd",
+          "#ebedfe"
+        ]
+      },
+      "indigo-late-on": {
+        "role": "primary",
+        "displayName": "Ink on Late Indigo",
+        "canonical": "hsl(246 50% 10%)",
+        "hex": "#0f0d26",
+        "oklch": "oklch(17.8% 0.051 284.5)",
+        "tonalRamp": [
+          "#0a071f",
+          "#22213d",
+          "#3f3e5c",
+          "#5e5d7d",
+          "#7e7fa0",
+          "#a1a1c4",
+          "#c5c5ea",
+          "#ecedfe"
+        ]
+      },
+      "indigo-wash-late": {
+        "role": "primary",
+        "displayName": "Indigo Wash, Late Edition",
+        "canonical": "hsl(244 32% 17%)",
+        "hex": "#1f1d39",
+        "oklch": "oklch(25.0% 0.052 285.0)",
+        "tonalRamp": [
+          "#0a0720",
+          "#23213d",
+          "#3f3e5d",
+          "#5e5d7e",
+          "#7f7ea1",
+          "#a1a1c5",
+          "#c5c5ea",
+          "#ecedff"
+        ]
+      },
+      "indigo-pale-late": {
+        "role": "primary",
+        "displayName": "Pale Indigo, Late Edition",
+        "canonical": "hsl(237 92% 86%)",
+        "hex": "#babefc",
+        "oklch": "oklch(82.0% 0.088 281.9)",
+        "tonalRamp": [
+          "#0a002e",
+          "#201c4e",
+          "#3b3b6f",
+          "#595a92",
+          "#7a7cb6",
+          "#9c9fdb",
+          "#c0c3ff",
+          "#ebedff"
+        ]
+      },
+      "star-gold-late": {
+        "role": "secondary",
+        "displayName": "Star Gold, Late Edition",
+        "canonical": "hsl(40 92% 60%)",
+        "hex": "#f7b83b",
+        "oklch": "oklch(82.1% 0.151 80.4)",
+        "tonalRamp": [
+          "#120900",
+          "#332200",
+          "#573d01",
+          "#7e5a04",
+          "#a8790a",
+          "#d39919",
+          "#fcbd41",
+          "#feecce"
+        ]
+      },
+      "night-grey": {
+        "role": "neutral",
+        "displayName": "Night Grey",
+        "canonical": "hsl(250 10% 13%)",
+        "hex": "#1f1e24",
+        "oklch": "oklch(23.8% 0.013 293.1)",
+        "tonalRamp": [
+          "#0b0a10",
+          "#25242b",
+          "#424148",
+          "#616068",
+          "#828189",
+          "#a5a4ac",
+          "#c9c8d1",
+          "#eeedf6"
+        ]
+      },
+      "night-plate-tint": {
+        "role": "neutral",
+        "displayName": "Night Plate Tint",
+        "canonical": "hsl(250 10% 12.5%)",
+        "hex": "#1e1d23",
+        "oklch": "oklch(23.3% 0.012 293.1)",
+        "tonalRamp": [
+          "#0b0a10",
+          "#25242b",
+          "#424148",
+          "#616068",
+          "#828189",
+          "#a5a4ac",
+          "#c9c8d1",
+          "#eeedf6"
+        ]
+      },
+      "faded-ink-late": {
+        "role": "neutral",
+        "displayName": "Faded Ink, Late Edition",
+        "canonical": "hsl(250 7% 66%)",
+        "hex": "#a4a2ae",
+        "oklch": "oklch(71.8% 0.018 293.6)",
+        "tonalRamp": [
+          "#0b0a12",
+          "#25242d",
+          "#42404b",
+          "#615f6b",
+          "#82818c",
+          "#a5a3af",
+          "#c9c7d4",
+          "#efecfa"
+        ]
+      },
+      "hairline-late": {
+        "role": "neutral",
+        "displayName": "Hairline, Late Edition",
+        "canonical": "hsl(250 8% 19%)",
+        "hex": "#2e2d34",
+        "oklch": "oklch(30.0% 0.014 293.2)",
+        "tonalRamp": [
+          "#0b0a11",
+          "#25242b",
+          "#424149",
+          "#616069",
+          "#82818a",
+          "#a5a4ad",
+          "#c9c8d2",
+          "#eeedf7"
+        ]
+      },
+      "rule-late": {
+        "role": "neutral",
+        "displayName": "Heavy Rule, Late Edition",
+        "canonical": "hsl(250 14% 88%)",
+        "hex": "#dedce5",
+        "oklch": "oklch(89.8% 0.012 293.8)",
+        "tonalRamp": [
+          "#0b0a10",
+          "#25242a",
+          "#424148",
+          "#616067",
+          "#828189",
+          "#a5a4ac",
+          "#c9c8d0",
+          "#efedf6"
+        ]
+      },
+      "field-rule-late": {
+        "role": "neutral",
+        "displayName": "Field Rule, Late Edition",
+        "canonical": "hsl(250 8% 28%)",
+        "hex": "#44424d",
+        "oklch": "oklch(38.4% 0.019 293.1)",
+        "tonalRamp": [
+          "#0b0a13",
+          "#25232e",
+          "#42404c",
+          "#615f6c",
+          "#82808d",
+          "#a5a3b0",
+          "#c9c7d5",
+          "#efecfb"
+        ]
+      },
+      "proof-red-late": {
+        "role": "error",
+        "displayName": "Proof Red, Late Edition",
+        "canonical": "hsl(2 75% 62%)",
+        "hex": "#e75a55",
+        "oklch": "oklch(65.1% 0.176 25.2)",
+        "tonalRamp": [
+          "#1e0001",
+          "#4c0106",
+          "#7f0411",
+          "#af2328",
+          "#d74c49",
+          "#fc756e",
+          "#ffb3ab",
+          "#fee9e6"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Detail-page film title (3rem / 4.5rem / 6rem), Pick of the Week title, 404 numeral, drop cap. Extra-condensed, 900, uppercase."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "List-page h1 (2.25rem / 3rem / 3.75rem). Condensed, 800, uppercase."
+      },
+      "section-head": {
+        "displayName": "Section Head",
+        "purpose": "Every h2 under a heavy-over-hairline rule (1.5rem / 1.875rem); state-message titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Film titles in rows, cells, chart entries, suggestions; cast names. Condensed, 700, sentence case, 16 to 18px."
+      },
+      "nav-tab": {
+        "displayName": "Nav Tab",
+        "purpose": "Masthead section index tabs. Condensed, 700, uppercase."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Pick of the Week overview, max 62ch."
+      },
+      "body-long": {
+        "displayName": "Body Long",
+        "purpose": "Detail-page overview with drop cap, max 66ch."
+      },
+      "ui": {
+        "displayName": "UI",
+        "purpose": "Button labels, text links, fact values."
+      },
+      "tab-caps": {
+        "displayName": "Tab Caps",
+        "purpose": "Genre chips and the List / Grid toggle."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Column heads, fact labels, footer column heads, edition dateline, page count. Only ever heads data."
+      },
+      "figure-index": {
+        "displayName": "Index Figure",
+        "purpose": "Two-digit listing indexes and poster index badges (14px in badges)."
+      },
+      "figure-chart": {
+        "displayName": "Chart Figure",
+        "purpose": "Top Ten chart ranks (3rem / 3.75rem), right-aligned."
+      }
+    },
+    "shadows": [
+      {
+        "name": "floating-panel",
+        "value": "0 18px 40px -20px rgb(0 0 0 / 0.45)",
+        "purpose": "Genre panel and search suggestions only; always paired with a 1px ink border."
+      },
+      {
+        "name": "menu",
+        "value": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+        "purpose": "Theme dropdown menu, with a 1px ink border."
+      },
+      {
+        "name": "rule-hairline",
+        "value": "0 4px 0 -3px hsl(var(--rule))",
+        "purpose": "Not elevation: draws the 1px hairline that closes a section head under its 3px top rule."
+      },
+      {
+        "name": "field-focus",
+        "value": "inset 0 -2px 0 hsl(var(--primary))",
+        "purpose": "Indigo underline inside the bottom edge of the focused search field."
+      }
+    ],
+    "motion": [
+      {
+        "name": "out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The print-in curve; Tailwind ease-out-expo."
+      },
+      {
+        "name": "print-in",
+        "value": "520ms out-expo, filter grayscale(1) contrast(1.35) to none",
+        "purpose": "A still printing in from ink when it changes (Pick of the Week, detail backdrop); keyed on the film."
+      },
+      {
+        "name": "state-color",
+        "value": "150ms",
+        "purpose": "Colour and fill transitions on buttons, tabs, chips, rows, badges."
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "200ms, translateX 2px",
+        "purpose": "Trailing arrows on text links; row arrows nudge 1px up-right over 150ms."
+      },
+      {
+        "name": "press",
+        "value": "translateY(1px)",
+        "purpose": "Buttons on :active."
+      },
+      {
+        "name": "popover-enter",
+        "value": "fade + zoom from 95%",
+        "purpose": "Radix popover and dropdown open/close (tailwindcss-animate)."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "prefers-reduced-motion collapses every animation and transition."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "container-max",
+        "value": "1440px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The indigo spot-ink action: Watch trailer, Back to this week.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"currentColor\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linejoin=\"round\" aria-hidden=\"true\"><polygon points=\"6 3 20 12 6 21 6 3\"/></svg>Watch trailer</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 20px; font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 15px; font-weight: 600; color: hsl(var(--primary-foreground, 0 0% 100%)); background: hsl(var(--primary, 244 58% 51%)); border: 0; border-radius: 0; cursor: pointer; transition: background-color 150ms; } .ds-btn-primary:hover { background: hsl(var(--primary, 244 58% 51%) / 0.9); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(var(--background, 60 14% 98.5%)), 0 0 0 4px hsl(var(--ring, 244 58% 51%)); } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Square ink-ruled secondary action that inverts to ink on hover: Full listing, Try again.",
+      "html": "<button class=\"ds-btn-outline\">Full listing</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 16px; font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 14px; font-weight: 600; color: hsl(var(--foreground, 250 13% 9%)); background: hsl(var(--background, 60 14% 98.5%)); border: 1px solid hsl(var(--rule, 250 13% 9%)); border-radius: 0; cursor: pointer; transition: background-color 150ms, color 150ms; } .ds-btn-outline:hover { background: hsl(var(--foreground, 250 13% 9%)); color: hsl(var(--background, 60 14% 98.5%)); } .ds-btn-outline:focus-visible { outline: none; box-shadow: 0 0 0 2px hsl(var(--background, 60 14% 98.5%)), 0 0 0 4px hsl(var(--ring, 244 58% 51%)); } .ds-btn-outline:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Section Index",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "Masthead tabs in condensed capitals; the active section is a solid indigo block, closed by the heavy-over-hairline rule pair.",
+      "html": "<nav class=\"ds-index\"><a class=\"ds-tab ds-tab-active\" href=\"#\" aria-current=\"page\">This week</a><a class=\"ds-tab\" href=\"#\">Now Playing</a><a class=\"ds-tab\" href=\"#\">Upcoming</a><a class=\"ds-tab\" href=\"#\">Top Rated</a></nav>",
+      "css": ".ds-index { display: flex; border-bottom: 3px solid hsl(var(--rule, 250 13% 9%)); box-shadow: 0 2px 0 0 hsl(var(--background, 60 14% 98.5%)), 0 3px 0 0 hsl(var(--rule, 250 13% 9%)); } .ds-tab { display: inline-flex; align-items: center; height: 40px; padding: 0 12px; font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; font-stretch: 72%; font-variation-settings: 'wdth' 72; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; color: hsl(var(--foreground, 250 13% 9%)); text-decoration: none; transition: color 150ms; } .ds-tab:hover { color: hsl(var(--primary, 244 58% 51%)); } .ds-tab:focus-visible { outline: 2px solid hsl(var(--ring, 244 58% 51%)); outline-offset: 2px; } .ds-tab-active, .ds-tab-active:hover { background: hsl(var(--primary, 244 58% 51%)); color: hsl(var(--primary-foreground, 0 0% 100%)); }"
+    },
+    {
+      "name": "Genre Chip",
+      "kind": "chip",
+      "refersTo": "genre-chip",
+      "description": "Square ink-ruled index tab; hover inverts to ink, the active genre prints solid indigo.",
+      "html": "<div class=\"ds-chips\"><a class=\"ds-chip\" href=\"#\">Drama</a><a class=\"ds-chip ds-chip-active\" href=\"#\" aria-current=\"page\">Horror</a><a class=\"ds-chip\" href=\"#\">Science Fiction</a></div>",
+      "css": ".ds-chips { display: flex; flex-wrap: wrap; gap: 6px; } .ds-chip { display: inline-flex; align-items: center; height: 32px; padding: 0 12px; font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: hsl(var(--foreground, 250 13% 9%)); text-decoration: none; border: 1px solid hsl(var(--rule, 250 13% 9%) / 0.8); border-radius: 0; transition: background-color 150ms, color 150ms; } .ds-chip:hover { background: hsl(var(--foreground, 250 13% 9%)); color: hsl(var(--background, 60 14% 98.5%)); } .ds-chip:focus-visible { outline: 2px solid hsl(var(--ring, 244 58% 51%)); outline-offset: 2px; } .ds-chip-active, .ds-chip-active:hover { background: hsl(var(--primary, 244 58% 51%)); border-color: hsl(var(--primary, 244 58% 51%)); color: hsl(var(--primary-foreground, 0 0% 100%)); }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "search-field",
+      "description": "Square search combobox; focus darkens the border to ink and draws an indigo underline inside the bottom edge.",
+      "html": "<label class=\"ds-search\"><span class=\"ds-search-icon\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><path d=\"m21 21-4.3-4.3\"/></svg></span><input type=\"search\" placeholder=\"Search movies…\" aria-label=\"Search movies\"></label>",
+      "css": ".ds-search { position: relative; display: block; width: 340px; max-width: 100%; } .ds-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); display: flex; color: hsl(var(--muted-foreground, 250 6% 38%)); pointer-events: none; } .ds-search input { width: 100%; height: 40px; padding: 0 36px; font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 14px; color: hsl(var(--foreground, 250 13% 9%)); caret-color: hsl(var(--primary, 244 58% 51%)); background: hsl(var(--background, 60 14% 98.5%)); border: 1px solid hsl(var(--input, 250 9% 78%)); border-radius: 0; outline: none; transition: border-color 150ms, box-shadow 150ms; } .ds-search input::placeholder { color: hsl(var(--muted-foreground, 250 6% 38%)); } .ds-search input:hover { border-color: hsl(var(--rule, 250 13% 9%)); } .ds-search input:focus { border-color: hsl(var(--rule, 250 13% 9%)); box-shadow: inset 0 -2px 0 hsl(var(--primary, 244 58% 51%)); }"
+    },
+    {
+      "name": "Section Head",
+      "kind": "custom",
+      "refersTo": "section-head",
+      "description": "Heavy 3px ink rule over a condensed uppercase head, closed by one 1px hairline; the see-all link is the only indigo.",
+      "html": "<div class=\"ds-head\"><div><h2>Upcoming</h2><p>Opening soon in theaters.</p></div><a href=\"#\">See all <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"m12 5 7 7-7 7\"/></svg></a></div>",
+      "css": ".ds-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; padding: 12px 0 8px; border-top: 3px solid hsl(var(--rule, 250 13% 9%)); box-shadow: 0 4px 0 -3px hsl(var(--rule, 250 13% 9%)); font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; color: hsl(var(--foreground, 250 13% 9%)); } .ds-head h2 { margin: 0; font-stretch: 72%; font-variation-settings: 'wdth' 72; font-size: 30px; font-weight: 800; line-height: 0.95; letter-spacing: -0.01em; text-transform: uppercase; } .ds-head p { margin: 8px 0 0; font-size: 14px; color: hsl(var(--muted-foreground, 250 6% 38%)); } .ds-head a { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: hsl(var(--primary, 244 58% 51%)); text-decoration: none; text-underline-offset: 4px; } .ds-head a svg { transition: transform 200ms; } .ds-head a:hover { text-decoration: underline; } .ds-head a:hover svg { transform: translateX(2px); } .ds-head a:focus-visible { outline: 2px solid hsl(var(--ring, 244 58% 51%)); outline-offset: 2px; }"
+    },
+    {
+      "name": "Listing Row",
+      "kind": "custom",
+      "refersTo": "listing-row",
+      "description": "The default unit: two-digit index, thumbnail, condensed title, then year, genre and printed rating in fixed cells.",
+      "html": "<a class=\"ds-row\" href=\"#\"><span class=\"ds-row-no\">01</span><span class=\"ds-row-thumb\"></span><span class=\"ds-row-title\">Resident Evil<small>A courier fights to survive one horrifying night.</small></span><span class=\"ds-row-cell\">2026</span><span class=\"ds-row-cell\">Horror, Sci-Fi</span><span class=\"ds-row-rating\"><svg viewBox=\"0 0 100 20\" width=\"51\" height=\"10\" aria-hidden=\"true\" fill=\"hsl(var(--rating, 38 88% 50%))\"><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(0 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(20 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(40 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(60 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(80 0)\"/></svg><b>7.5</b></span><span class=\"ds-row-arrow\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg></span></a>",
+      "css": ".ds-row { display: grid; grid-template-columns: 2.5rem 3.5rem minmax(0,1fr) 3.5rem 9rem 7.5rem 1.25rem; align-items: center; column-gap: 16px; padding: 12px 0; border-bottom: 1px solid hsl(var(--border, 250 9% 86%)); font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; color: hsl(var(--foreground, 250 13% 9%)); text-decoration: none; transition: background-color 150ms; } .ds-row:hover { background: hsl(var(--secondary, 250 10% 94%)); } .ds-row:focus-visible { outline: none; background: hsl(var(--accent, 244 70% 96%)); } .ds-row-no { padding-left: 4px; font-stretch: 72%; font-variation-settings: 'wdth' 72; font-size: 18px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; color: hsl(var(--muted-foreground, 250 6% 38%)); } .ds-row-thumb { aspect-ratio: 2/3; background: hsl(var(--muted, 250 10% 93.5%)); } .ds-row-title { min-width: 0; font-stretch: 72%; font-variation-settings: 'wdth' 72; font-size: 18px; font-weight: 700; line-height: 1.25; text-decoration-color: hsl(var(--primary, 244 58% 51%)); text-decoration-thickness: 2px; } .ds-row:hover .ds-row-title { text-decoration-line: underline; } .ds-row-title small { display: block; margin-top: 2px; font-stretch: 100%; font-variation-settings: normal; font-size: 13px; font-weight: 400; color: hsl(var(--muted-foreground, 250 6% 38%)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-row-cell { font-size: 14px; color: hsl(var(--muted-foreground, 250 6% 38%)); font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-row-rating { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-variant-numeric: tabular-nums; } .ds-row-rating b { font-weight: 600; } .ds-row-arrow { display: flex; color: hsl(var(--muted-foreground, 250 6% 38%)); transition: color 150ms, transform 150ms; } .ds-row:hover .ds-row-arrow { color: hsl(var(--primary, 244 58% 51%)); transform: translate(1px,-1px); }"
+    },
+    {
+      "name": "Poster Cell",
+      "kind": "card",
+      "refersTo": "index-badge",
+      "description": "A full-colour 2:3 poster in a hairline-ruled grid cell with a square ink index badge that turns indigo on hover.",
+      "html": "<a class=\"ds-cell\" href=\"#\"><span class=\"ds-cell-still\"><span class=\"ds-cell-no\">01</span></span><span class=\"ds-cell-title\">Heart of the Beast</span><span class=\"ds-cell-meta\"><span class=\"ds-cell-rating\"><svg viewBox=\"0 0 100 20\" width=\"51\" height=\"10\" aria-hidden=\"true\" fill=\"hsl(var(--rating, 38 88% 50%))\"><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(0 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(20 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(40 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(60 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(80 0)\"/></svg><b>7.5</b></span><span>2026</span></span></a>",
+      "css": ".ds-cell { display: flex; flex-direction: column; width: 180px; padding: 12px; border: 1px solid hsl(var(--border, 250 9% 86%)); background: hsl(var(--background, 60 14% 98.5%)); font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; color: hsl(var(--foreground, 250 13% 9%)); text-decoration: none; } .ds-cell:focus-visible { outline: none; box-shadow: inset 0 0 0 2px hsl(var(--ring, 244 58% 51%)); } .ds-cell-still { position: relative; aspect-ratio: 2/3; background: hsl(var(--muted, 250 10% 93.5%)); outline: 1px solid rgb(0 0 0 / 0.05); outline-offset: -1px; } .ds-cell-no { position: absolute; left: 0; top: 0; padding: 2px 6px; font-stretch: 72%; font-variation-settings: 'wdth' 72; font-size: 14px; font-weight: 800; font-variant-numeric: tabular-nums; background: hsl(var(--foreground, 250 13% 9%)); color: hsl(var(--background, 60 14% 98.5%)); transition: background-color 150ms, color 150ms; } .ds-cell:hover .ds-cell-no { background: hsl(var(--primary, 244 58% 51%)); color: hsl(var(--primary-foreground, 0 0% 100%)); } .ds-cell-title { margin-top: 10px; font-stretch: 72%; font-variation-settings: 'wdth' 72; font-size: 16px; font-weight: 700; line-height: 1.25; text-decoration-color: hsl(var(--primary, 244 58% 51%)); text-decoration-thickness: 2px; } .ds-cell:hover .ds-cell-title { text-decoration-line: underline; } .ds-cell-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; font-size: 12px; color: hsl(var(--muted-foreground, 250 6% 38%)); font-variant-numeric: tabular-nums; } .ds-cell-rating { display: inline-flex; align-items: center; gap: 6px; } .ds-cell-rating b { font-weight: 600; color: hsl(var(--foreground, 250 13% 9%)); }"
+    },
+    {
+      "name": "Printed Rating",
+      "kind": "custom",
+      "refersTo": "star-gold",
+      "description": "Five star-gold stars filled to the score over 15% ink stars, then the figure in ink with tabular numerals.",
+      "html": "<span class=\"ds-rating\" role=\"img\" aria-label=\"Rated 7.5 out of 10\"><span class=\"ds-stars\"><svg viewBox=\"0 0 100 20\" width=\"51\" height=\"10\" aria-hidden=\"true\" fill=\"hsl(var(--foreground, 250 13% 9%) / 0.15)\"><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(0 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(20 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(40 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(60 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(80 0)\"/></svg><span class=\"ds-stars-fill\" style=\"width:75%\"><svg viewBox=\"0 0 100 20\" width=\"51\" height=\"10\" aria-hidden=\"true\" fill=\"hsl(var(--rating, 38 88% 50%))\"><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(0 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(20 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(40 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(60 0)\"/><path d=\"M10 1.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L10 14.9l-5.25 2.75 1-5.85L1.5 7.7l5.9-.9z\" transform=\"translate(80 0)\"/></svg></span></span><b>7.5</b></span>",
+      "css": ".ds-rating { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 24px; color: hsl(var(--foreground, 250 13% 9%)); font-variant-numeric: tabular-nums; } .ds-rating b { font-weight: 600; } .ds-stars { position: relative; display: inline-flex; } .ds-stars svg { width: 4.25em; height: 0.85em; flex-shrink: 0; } .ds-stars-fill { position: absolute; inset: 0 auto 0 0; overflow: hidden; display: inline-flex; }"
+    },
+    {
+      "name": "Facts Box",
+      "kind": "card",
+      "refersTo": "facts-box",
+      "description": "A 3px ink frame holding the large rating over an ink rule, then label-caps fact rows on hairlines.",
+      "html": "<aside class=\"ds-facts\"><div class=\"ds-facts-top\"><span class=\"ds-label\">Rating</span><span class=\"ds-facts-score\">7.5</span><span class=\"ds-facts-votes\">from 1,284 votes</span></div><dl><div><dt class=\"ds-label\">Released</dt><dd>November 7, 2026</dd></div><div><dt class=\"ds-label\">Runtime</dt><dd>1h 34m</dd></div><div><dt class=\"ds-label\">Genres</dt><dd>Horror, Science Fiction</dd></div></dl></aside>",
+      "css": ".ds-facts { width: 320px; padding: 20px; border: 3px solid hsl(var(--rule, 250 13% 9%)); background: hsl(var(--background, 60 14% 98.5%)); font-family: var(--font-sans, Archivo), Archivo, ui-sans-serif, system-ui, sans-serif; color: hsl(var(--foreground, 250 13% 9%)); } .ds-facts-top { display: flex; flex-direction: column; padding-bottom: 16px; border-bottom: 1px solid hsl(var(--rule, 250 13% 9%)); } .ds-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: hsl(var(--muted-foreground, 250 6% 38%)); } .ds-facts-score { margin-top: 4px; font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-facts-votes { margin-top: 4px; font-size: 12px; color: hsl(var(--muted-foreground, 250 6% 38%)); font-variant-numeric: tabular-nums; } .ds-facts dl { margin: 0; padding: 4px 0; } .ds-facts dl div { display: grid; grid-template-columns: 6.5rem minmax(0,1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid hsl(var(--border, 250 9% 86%)); font-size: 14px; } .ds-facts dl div:last-child { border-bottom: 0; } .ds-facts dd { margin: 0; font-weight: 500; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Listings Weekly",
+    "overview": "Movie Z is set as this week's listings magazine. Every list is a ruled, numbered listing with the deciding facts (year, genre, rating, runtime) lined up in fixed cells, read top to bottom the way a printed TV or cinema guide is read. The day edition is printed ink on bright stock; the late edition is the same page reversed out of a night-black plate. The interface is the typesetting and the films are the only full colour on the page: stills sit clean and full-colour in hairline boxes, and when a still changes it prints in, ink first, then the photograph comes up.\n\nDensity is editorial, not app-like: tight 12px row rhythm, columns locked by fixed-width grid tracks, condensed uppercase headlines that carry the hierarchy so that colour does not have to. Movie Z indigo is the one spot ink and is reserved for things you can press. Ratings are printed as five star-gold stars filled to the score with the figure beside them. Every corner is square. Depth comes from rules, not shadows: a heavy rule over each section head, closed by a single 1px hairline underneath.\n\nThe system rejects the streaming-service look outright: no black ground with a red accent, no full-bleed backdrop hero, no endless rows of unnumbered poster carousels. Movie Z is a discovery tool and presents itself as a publication, never as a player.",
+    "keyCharacteristics": [
+      "Ink on bright stock by day; reversed from a night-black plate in the late (dark) edition, with a user toggle.",
+      "Movie Z indigo as the only spot ink, only on pressable things; star gold only on printed ratings.",
+      "Archivo throughout, pulled narrow on its width axis for uppercase condensed headlines.",
+      "Tabular figures in fixed cells; every listing numbered 01, 02, 03 continuously across pages.",
+      "Heavy rule over each section head, one 1px hairline closing it.",
+      "Square corners everywhere (0px).",
+      "Clean full-colour stills in hairline boxes, printing in from grayscale on change."
+    ],
+    "rules": [
+      {
+        "name": "The One Spot Ink Rule",
+        "body": "Indigo appears only on things you can press, on their states (active, current, focused, previewed), and in the logo. A heading, a label, a background panel or a decorative mark is never indigo.",
+        "section": "colors"
+      },
+      {
+        "name": "The Printed Rating Rule",
+        "body": "Star gold is spent only on rating stars. The figure next to the stars is always set in ink with tabular numerals; gold is the picture of the score, never the score itself.",
+        "section": "colors"
+      },
+      {
+        "name": "The Films Carry The Colour Rule",
+        "body": "The chrome stays ink, stock and hairline grey. All other colour on the page comes from TMDB stills, posters and cast photos.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width Axis Rule",
+        "body": "Hierarchy comes from width, weight and case, not from a second family. Headlines are Archivo pulled to 72% (condensed) or 62% (extra-condensed) width, always heavy (800 to 900) and uppercase; running text is never condensed.",
+        "section": "typography"
+      },
+      {
+        "name": "The Fixed Cell Rule",
+        "body": "Every figure that lines up with another (index numbers, years, ratings, runtimes, vote counts, page numbers) is set with tabular numerals inside a fixed-width grid track, so columns align down the whole page. Tabular figures are switched off globally and switched on per cell.",
+        "section": "typography"
+      },
+      {
+        "name": "The Column Head Rule",
+        "body": "Small spaced capitals (11px, 600, 0.08em) are only ever a label for data that follows: a column head, a fact label, a footer column head, a dateline. They are not decoration above headlines.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ruled Not Spaced Rule",
+        "body": "Items are separated by hairline rules, not by gutters of air. Listings divide rows with hairlines; grids divide cells with hairlines; columns divide with a hairline column rule.",
+        "section": "layout"
+      },
+      {
+        "name": "The Numbered Listing Rule",
+        "body": "Every list of films is numbered with two-digit tabular indexes (01, 02 ...) in rows and corner badges in cells, and the numbering runs continuously across pages.",
+        "section": "layout"
+      },
+      {
+        "name": "The Heavy Over Hairline Rule",
+        "body": "Every section head is opened by a 3px ink rule across its top and closed by a single 1px ink hairline beneath it (drawn as `box-shadow: 0 4px 0 -3px` in the rule colour, a rule, not elevation). The masthead's section index uses the same pair: a 3px rule under the tabs, a 2px gap, a 1px rule.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Flat Page Rule",
+        "body": "Nothing that sits in the page flow casts a shadow. Shadows are reserved for panels that float over the page (popovers, suggestions, menus), and those panels still carry an ink border.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Corner Rule",
+        "body": "Corner radius is 0px everywhere. A rounded control or card does not belong to this page.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** open every section head with the 3px ink rule and close it with one 1px hairline, and let a ruled grid directly beneath share that hairline.",
+      "**Do** number every list of films with two-digit tabular indexes, continuing across pages.",
+      "**Do** set years, ratings, runtimes, counts and page numbers with tabular numerals in fixed-width grid tracks so they align down the page.",
+      "**Do** set headlines in Archivo pulled to 72% or 62% width, 800 to 900 weight, uppercase; keep running text at normal width with a 62 to 66ch measure.",
+      "**Do** spend indigo only on pressable things and their active, current, focused or previewed states, and lift it to `indigo-late` with near-black text in the late edition.",
+      "**Do** print ratings as five star-gold stars filled to the score with the figure in ink beside them.",
+      "**Do** keep stills clean and full-colour in 2:3, 3:4 or 16:9 boxes framed by a hairline or ink rule, and print them in from grayscale (520ms, out-expo) when they change.",
+      "**Do** design every state: skeletons in the exact shape of the content, a boxed dashed notice for empty and error, and a Try again outline button where retry is possible.",
+      "**Do** keep 0px corners on every control, panel, still and badge.",
+      "**Do** keep both editions: ink on bright stock by day, reversed from the night plate late, with the theme toggle in the masthead."
+    ],
+    "donts": [
+      "**Don't** build a black ground with a red accent, a full-bleed autoplaying backdrop hero, or endless rows of unnumbered poster carousels; Movie Z must not look like a Netflix copy. The only horizontal strip is the phone-width fallback of a bounded, numbered, ruled section, which becomes a ruled grid from 768px.",
+      "**Don't** use indigo for headings, labels, panels or decoration, and don't use star gold for anything but rating stars.",
+      "**Don't** round corners or add shadows to anything in the page flow; shadows belong only to floating popovers, suggestions and menus, which keep their ink border.",
+      "**Don't** separate items with gutters of empty space where a hairline rule belongs.",
+      "**Don't** lay a halftone, dot screen, grain or tint over stills or the page ground; stills print clean and full-colour.",
+      "**Don't** add a second typeface or a script, serif or system display face; width, weight and case on Archivo carry the hierarchy.",
+      "**Don't** set small spaced capitals above a headline as an eyebrow; label caps only head data (columns, facts, footer columns, the dateline).",
+      "**Don't** present play, watch-now or subscription affordances beyond Watch trailer; Movie Z plays trailers, never films.",
+      "**Don't** replace the Movie Z name or the film-strip logo, or shift the brand indigo away from #4338CA."
+    ]
+  }
+}
